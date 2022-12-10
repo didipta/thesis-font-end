@@ -1,12 +1,14 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Footer from '../commonpage/Footer';
 import Header from '../commonpage/Header';
-import Login from '../commonpage/Login';
 
 const Main = () => {
     return (
         <div>
             <Header></Header>
-            <Login></Login>
+            <Outlet></Outlet>
+            <Footer></Footer>
         </div>
     );
 };

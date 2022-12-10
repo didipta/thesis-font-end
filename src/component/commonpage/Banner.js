@@ -10,7 +10,7 @@ import img8 from "../img/sydney-sims-fZ2hMpHIrbI-unsplash.jpg"
 const Banner = () => {
     return (
         <div>
-            <div className="carousel w-full h-[60vh] border border-rose-700 border-spacing-8">
+            <div className="carousel w-full h-[60vh]  border-rose-300 border-4">
   <div id="slide1" className="carousel-item relative w-full ">
     <img src={img1} className="w-full " />
     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
