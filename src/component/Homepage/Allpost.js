@@ -9,32 +9,9 @@ import { PostLike } from '../Hook/PostLike';
 import { AuthContext } from '../Context/Authprovider';
 const Allpost = ({post,refetch}) => {
     const {user}=useContext(AuthContext);
-    const [like,setLike]=useState(false)
-    console.log(like);
     const handelliKe=(id)=>
     {
-        const likearr=[...post.likeuser];
-        const savelike=likearr.filter(x=>x!==user.email);
-        const userlike=[...savelike];
-        if(!likearr.some(x=>x===user.email))
-        {
-            userlike.push(user.email);
-        }
-        
-        setLike(likearr.some(x=>x===user.email))
-        fetch(`http://localhost:5000/postlike?postid=${id}`,
-        {
-            method:"POST",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body:JSON.stringify(userlike)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            
-                refetch();
-             })
+        PostLike(id,post.likeuser,user.email,refetch);
     }
     return (
         <div key={post._id}>
@@ -77,7 +54,7 @@ const Allpost = ({post,refetch}) => {
                     post.posttext!==""&&<div className="p-2 text-sm leading-6 text-justify w-full">
                   <p className="pl-2 pr-2">
                       {
-                          (post.posttext).length<=290?post.posttext:<>{(post.posttext).slice(0,290)+"..."}<Link to="/home/showpost" className="text-blue-500 text-xs link font-medium">See more</Link></>
+                          (post.posttext).length<=290?post.posttext:<>{(post.posttext).slice(0,290)+"..."}<Link to={`/home/showpost/${post._id}`} className="text-blue-500 text-xs link font-medium">See more</Link></>
                       }
                    
                     </p>
@@ -102,9 +79,9 @@ const Allpost = ({post,refetch}) => {
                    <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
                    <p>Love</p>
                 </div>
-                <Link to="/home/showpost"><div className="w-full p-3 flex justify-center items-center gap-2">
-                   <FontAwesomeIcon icon={faComment} className="text-lg"></FontAwesomeIcon>(15)
-                   <p>Comment</p>
+                <Link to={`/home/showpost/${post._id}`}><div className="w-full p-3 flex justify-center items-center gap-2">
+                   <FontAwesomeIcon icon={faComment} className="text-lg"></FontAwesomeIcon>({post.Comment.length})
+                   <p>suggestion</p>
                 </div></Link>
                 <div className="w-full p-3 flex justify-center items-center gap-2">
                    <FontAwesomeIcon icon={faShare} className="text-lg"></FontAwesomeIcon>

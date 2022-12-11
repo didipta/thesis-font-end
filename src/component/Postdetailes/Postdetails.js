@@ -1,25 +1,44 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import 'react-photo-view/dist/react-photo-view.css';
 import {faEllipsisV,faHeart,faComment,faShare} from '@fortawesome/free-solid-svg-icons';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { Link } from 'react-router-dom';
-
+import { Link, useLoaderData, useLocation, useNavigate, useRevalidator } from 'react-router-dom';
+import { TimeSince } from '../Hook/TimeSince';
+import { AuthContext } from '../Context/Authprovider';
+import { PostLike } from '../Hook/PostLike';
+import { useReducer } from 'react';
 const Postdetails = () => {
+    const post = useLoaderData();
+    const location=useLocation();
+    const from=location.state?.from?.pathname;
+    const navigator=useNavigate();
+    const {user}=useContext(AuthContext);
+    const ref=()=>{
+        navigator(from, { replace: true });
+    }
+   
+    const handelliKe=(id)=>
+    {
+        PostLike(id,post.likeuser,user.email,ref);
+        
+    }
+   
     return (
         <div>
             <div className=" shadow-lg p-2 lg:p-5 flex flex-col gap-1 mb-3">
-                <div className="flex justify-between">
+            <div className="flex justify-between">
                 <div className="flex items-center gap-1" >
                 <div class="avatar online pr-2">
                     <div class="w-8 rounded-full">
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img src={post.userimage} alt="" />
                     </div>
                 </div>
                 <div className="flex flex-col gap-1"> 
-                <h1 className="font-semibold">Dipta saha</h1>
-                <div className="text-[10px] font-semibold">
-                    <p className="rounded-lg">Public</p>
+                <h1 className="font-semibold">{post.username}</h1>
+                <div className="text-[10px] font-semibold flex items-center gap-3">
+                    <p className="rounded-lg text-slate-600">Public</p>
+                    <small className="text-slate-400">{TimeSince(new Date(post.date))} ago</small>
                 </div>
                 </div>
                 
@@ -42,29 +61,38 @@ const Postdetails = () => {
                 </div>
                 </div>
                 </div>
-                <div className="p-2 text-sm leading-6 text-justify">
-                  <p>
-                  Mental health is a way of thinking that affects your thoughts and actions. It helps determine how you handle stress and relate to others. It is important at every life stage, from childhood and adolescence through adulthood.....<Link to="/home/showpost">See more</Link>
-                  </p>
-                </div>
+                {
+                    post.posttext!==""&&<div className="p-2 text-sm leading-6 text-justify w-full">
+                  <p className="pl-2 pr-2">
+                      {
+                          post.posttext
+                      }
+                   
+                    </p>
+                  </div>
+                }
+                
+                {
+                post.postimg!==""&&
                 <div className="overflow-hidden h-80 p-3">
-                <figure>
-                    <PhotoProvider>
-                    <PhotoView src="https://onecms-res.cloudinary.com/image/upload/s--hZVHD4cG--/f_auto%2Cq_auto/v1/mediacorp/tdy/image/2022/07/14/20220714_istock_stress.jpg?itok=KQNipIQQ">
-                    <img src='https://onecms-res.cloudinary.com/image/upload/s--hZVHD4cG--/f_auto%2Cq_auto/v1/mediacorp/tdy/image/2022/07/14/20220714_istock_stress.jpg?itok=KQNipIQQ' alt='' className="w-full h-96"></img>
-                    </PhotoView>
-                    </PhotoProvider>
-                    </figure>
+                    <figure>
+                        <PhotoProvider>
+                        <PhotoView src={post.postimg}>
+                        <img src={post.postimg} alt='' className="w-full h-96"></img>
+                        </PhotoView>
+                        </PhotoProvider>
+                        </figure>
                     
                 </div>
-               <div className="flex items-center justify-evenly text-sm mt-2">
+                }
+              <div className="flex items-center justify-evenly text-sm mt-2 pl-2 pr-2">
                 <div className="w-full p-3 flex justify-center items-center gap-2">
-                   <FontAwesomeIcon icon={faHeart} className="text-lg"></FontAwesomeIcon>(10)
+                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
                    <p>Love</p>
                 </div>
-                <Link to="/home/showpost"><div className="w-full p-3 flex justify-center items-center gap-2">
-                   <FontAwesomeIcon icon={faComment} className="text-lg"></FontAwesomeIcon>(15)
-                   <p>Comment</p>
+                <Link to={`/home/showpost/${post._id}`}><div className="w-full p-3 flex justify-center items-center gap-2">
+                   <FontAwesomeIcon icon={faComment} className="text-lg"></FontAwesomeIcon>({post.Comment.length})
+                   <p>suggestion</p>
                 </div></Link>
                 <div className="w-full p-3 flex justify-center items-center gap-2">
                    <FontAwesomeIcon icon={faShare} className="text-lg"></FontAwesomeIcon>

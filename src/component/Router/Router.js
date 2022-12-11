@@ -26,7 +26,8 @@ export const routers=createBrowserRouter([
                         element:<Postpart></Postpart>
                     },
                     {
-                        path:"/home/showpost",
+                        path:"/home/showpost/:id",
+                        loader: ({params}) => fetch(`https://thesis-node-js.vercel.app/posts/${params.id}`),
                         element:<Postdetails></Postdetails>
                     },
                     {

@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
 
 export const PostLike = (id,like,email,refetch) => {
-    console.log(id,like,email);
-    const [userlike,setuseLike]=useState([]);
-    const likearr=[...like];
-    likearr.push(email);
-    const savelike=likearr.filter(x=>x!==email);
-    setuseLike(savelike)
-    fetch(`http://localhost:5000/postlike?postid=${id}`,
-    {
-        method:"POST",
-        body:userlike
-    })
-    .then(res=>res.json())
-    .then(data=>{
-            refetch();
-         })
+        const likearr=[...like];
+        const savelike=likearr.filter(x=>x!==email);
+        const userlike=[...savelike];
+        if(!likearr.some(x=>x===email))
+        {
+            userlike.push(email);
+        }
+        fetch(`https://thesis-node-js.vercel.app/postlike?postid=${id}`,
+        {
+            method:"POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body:JSON.stringify(userlike)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            
+                refetch();
+             })
 };
 
