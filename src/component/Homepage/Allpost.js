@@ -1,13 +1,41 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import 'react-photo-view/dist/react-photo-view.css';
 import {faEllipsisV,faHeart,faComment,faShare} from '@fortawesome/free-solid-svg-icons';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
 import { TimeSince } from '../Hook/TimeSince';
-const Allpost = ({post}) => {
+import { PostLike } from '../Hook/PostLike';
+import { AuthContext } from '../Context/Authprovider';
+const Allpost = ({post,refetch}) => {
+    const {user}=useContext(AuthContext);
     const [like,setLike]=useState(false)
     console.log(like);
+    const handelliKe=(id)=>
+    {
+        const likearr=[...post.likeuser];
+        const savelike=likearr.filter(x=>x!==user.email);
+        const userlike=[...savelike];
+        if(!likearr.some(x=>x===user.email))
+        {
+            userlike.push(user.email);
+        }
+        
+        setLike(likearr.some(x=>x===user.email))
+        fetch(`http://localhost:5000/postlike?postid=${id}`,
+        {
+            method:"POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body:JSON.stringify(userlike)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            
+                refetch();
+             })
+    }
     return (
         <div key={post._id}>
             <div className=" shadow-sm shadow-slate-300 rounded-sm p-2 lg:p-5 flex flex-col gap-1 mb-3">
@@ -71,7 +99,7 @@ const Allpost = ({post}) => {
                 }
                <div className="flex items-center justify-evenly text-sm mt-2 pl-2 pr-2">
                 <div className="w-full p-3 flex justify-center items-center gap-2">
-                   <button className="text-lg" onClick={()=>setLike(!like)}><FontAwesomeIcon icon={faHeart} className={like?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>(10)
+                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
                    <p>Love</p>
                 </div>
                 <Link to="/home/showpost"><div className="w-full p-3 flex justify-center items-center gap-2">

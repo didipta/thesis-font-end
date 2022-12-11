@@ -27,7 +27,8 @@ const Creactpost = ({setposttext,refetch}) => {
             userimage:userdetails.image,
             posttext:textarea,
             postimg:"",
-            date:new Date()
+            date:new Date(),
+            likeuser:[]
           }
           
           if(image!=="")

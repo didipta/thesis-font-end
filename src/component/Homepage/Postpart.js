@@ -50,7 +50,7 @@ const Postpart = () => {
                 isLoading&&<Loading></Loading>
             }
             {
-                allpost.map(post=><Allpost post={post}></Allpost>)
+                allpost.map(post=><Allpost post={post} refetch={refetch}></Allpost>)
             }
            </div>
 
