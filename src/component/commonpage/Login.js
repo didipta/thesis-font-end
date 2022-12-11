@@ -7,21 +7,49 @@ import Signin from './Signin';
 import Signup from './Signup';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AuthContext } from '../Context/Authprovider';
+import { useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
     const { googlelogin}=useContext(AuthContext);
     const [pagechange,Setpagechange]=useState(false);
     const googleprovider=new GoogleAuthProvider();
+    const location=useLocation();
+    const from=location.state?.from?.pathname || '/home';
+    const navigator=useNavigate();
     const handelgooglesignin=()=>
     {
       googlelogin(googleprovider)
       .then(res=>{
         const user=res.user;
+
+        const userdetails={
+            name:user.displayName,
+            email:user.email,
+            image:user.photoURL,
+            type:"user",
+            phone:"phone number not save",
+            Cover:"https://images.livemint.com/img/2022/02/13/600x338/Whatsapp_1644717760662_1644717769022.png"
+        }
+        fetch("https://thesis-node-js.vercel.app/users", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userdetails)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            navigator(from, { replace: true });
+        })
+        .catch(e=>
+          {
+            
+          })
         console.log(user)
     })
 }
     return (
         <div>
-            <div class="flex flex-col lg:overflow-hidden lg:flex-row  gap-5 lg:p-20 p-5">
+            <div class="flex flex-col lg:overflow-hidden lg:flex-row items-center  gap-5 lg:p-20 p-5 h-screen">
             <div class="grid flex-grow lg:w-5/12 hidden lg:block ">
             <Banner></Banner>
             </div> 

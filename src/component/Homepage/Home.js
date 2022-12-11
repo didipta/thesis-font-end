@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import Postpart from './Postpart';
 
 const Home = () => {
+  
     return (
         <div>
             <div className="flex justify-between gap-8 p-1 lg:p-3 h-screen overflow-x-auto">

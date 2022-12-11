@@ -5,6 +5,7 @@ import Postpart from "../Homepage/Postpart";
 import Main from "../Layout/Main";
 import Postdetails from "../Postdetailes/Postdetails";
 import Profile from "../Profile/Profile";
+import Privetrouter from "./Privetrouter";
 
 export const routers=createBrowserRouter([
 
@@ -18,7 +19,7 @@ export const routers=createBrowserRouter([
             },
             {
                 path:"/home",
-                element:<Home></Home>,
+                element:<Privetrouter><Home></Home></Privetrouter>,
                 children:[
                     {
                         path:"/home",

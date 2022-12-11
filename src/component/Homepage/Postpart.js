@@ -1,18 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import {faVideoCamera,faPhotoFilm,faFaceSmile} from '@fortawesome/free-solid-svg-icons'
 import Allpost from './Allpost';
 import Creactpost from './Creactpost';
 import { useState } from 'react';
+import { AuthContext } from '../Context/Authprovider';
+import { Userdetails } from '../Hook/Userdetails';
+import { Allpostshow } from '../Hook/Allpostshow';
+import Loading from '../Loading/Loading';
 const Postpart = () => {
     const[posttext,setposttext]=useState("");
+    const {user}=useContext(AuthContext);
+    const userdetails=Userdetails(user);
+    const [allpost,refetch,isLoading]=Allpostshow("");
     return (
         <div className="flex flex-col gap-4">
            <div className="shadow-lg p-3 lg:p-5">
              <div className="flex items-center gap-4 mb-3">
              <div class="avatar online pr-2">
             <div class="w-12 rounded-full">
-                <img src="https://placeimg.com/192/192/people" />
+            <img src={userdetails?.image} alt="" />
             </div>
              </div>
              <label htmlFor="creact-post" className="bg-slate-400 w-full p-2 rounded-xl text-zinc-300 overflow-hidden cursor-pointer">
@@ -39,16 +46,17 @@ const Postpart = () => {
              </div>
            </div>
            <div className="p-0 lg:p-5">
-            <Allpost></Allpost>
-            <Allpost></Allpost>
-            <Allpost></Allpost>
-            <Allpost></Allpost>
-            <Allpost></Allpost>
-            <Allpost></Allpost>
+            {
+                isLoading&&<Loading></Loading>
+            }
+            {
+                allpost.map(post=><Allpost post={post}></Allpost>)
+            }
            </div>
 
            <Creactpost
            setposttext={setposttext}
+           refetch={refetch}
            >
 
            </Creactpost>
