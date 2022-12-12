@@ -8,13 +8,20 @@ import Signup from './Signup';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AuthContext } from '../Context/Authprovider';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Usetoken from '../Hook/Usetoken';
 const Login = () => {
     const { googlelogin}=useContext(AuthContext);
     const [pagechange,Setpagechange]=useState(false);
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = Usetoken(loginUserEmail);
     const googleprovider=new GoogleAuthProvider();
     const location=useLocation();
     const from='/home';
     const navigator=useNavigate();
+    if (token) {
+
+        navigator(from, { replace: true });
+    }
     const handelgooglesignin=()=>
     {
       googlelogin(googleprovider)
@@ -38,7 +45,8 @@ const Login = () => {
         })
         .then(res => res.json())
         .then(data =>{
-            navigator(from, { replace: true });
+            setLoginUserEmail(user.email)
+           
         })
         .catch(e=>
           {
@@ -49,11 +57,11 @@ const Login = () => {
 }
     return (
         <div>
-            <div class="flex flex-col lg:overflow-hidden lg:flex-row items-center  gap-5 lg:p-20 p-5 h-screen">
-            <div class="grid flex-grow lg:w-5/12 hidden lg:block ">
+            <div class="flex flex-col lg:overflow-hidden lg:flex-row items-center gap-5 p-5 lg:p-20">
+            <div class="grid flex-grow w-full lg:w-5/12">
             <Banner></Banner>
             </div> 
-            <div class="grid flex-grow  p-5 mt-0 justify-center items-center">
+            <div class="grid flex-grow p-2  lg:p-5  justify-center items-center">
                 {
                     !pagechange?<Signin></Signin>:<Signup></Signup>
                 }

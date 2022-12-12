@@ -7,7 +7,8 @@ export const Comment = (id,comment,email,refetch) => {
     {
         method:"POST",
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            authorization: `bearer ${localStorage.getItem('Thankutoken')}`
         },
         body:JSON.stringify(usercomment)
     })

@@ -27,7 +27,13 @@ export const routers=createBrowserRouter([
                     },
                     {
                         path:"/home/showpost/:id",
-                        loader: ({params}) => fetch(`https://thesis-node-js.vercel.app/posts/${params.id}`),
+                        loader: ({params}) => fetch(`https://thesis-node-js.vercel.app/posts/${params.id}`,
+                        {
+                            headers: {
+                                authorization: `bearer ${localStorage.getItem('Thankutoken')}`
+                              }
+                        }
+                        ),
                         element:<Postdetails></Postdetails>
                     },
                     {

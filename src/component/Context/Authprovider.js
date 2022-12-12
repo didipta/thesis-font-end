@@ -23,6 +23,7 @@ const Authprovider = ({children}) => {
         signOut(auth)
         .then(res => {
             setUser(null);
+            localStorage.removeItem('Thankutoken');
         })
         .catch(error=>{
             setUser(null);
@@ -48,7 +49,8 @@ const Authprovider = ({children}) => {
         user,
         googlelogin,
         signoutall,
-        loading
+        loading,
+        setLoading,
         }
     return (
          <AuthContext.Provider value={authInfo}>

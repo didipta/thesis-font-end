@@ -10,7 +10,7 @@ import { Allpostshow } from '../Hook/Allpostshow';
 import Loading from '../Loading/Loading';
 const Postpart = () => {
     const[posttext,setposttext]=useState("");
-    const {user}=useContext(AuthContext);
+    const {user,signoutall}=useContext(AuthContext);
     const userdetails=Userdetails(user);
     const [allpost,refetch,isLoading]=Allpostshow("");
     return (

@@ -17,7 +17,7 @@ const Allpost = ({post,refetch}) => {
     }
     return (
         <div key={post._id}>
-            <div className=" shadow-sm shadow-slate-300 rounded-sm p-2 lg:p-5 flex flex-col gap-1 mb-3">
+            <div className=" shadow-sm shadow-slate-300 rounded-sm p-2 lg:p-5 flex flex-col gap-1 mb-3 overflow-x-auto">
                 <div className="flex justify-between">
                 <div className="flex items-center gap-1" >
                 <div class="avatar online pr-2">
@@ -81,18 +81,14 @@ const Allpost = ({post,refetch}) => {
                     
                 </div>
                 }
-               <div className="flex items-center justify-evenly text-sm mt-2 pl-2 pr-2">
-                <div className="w-full p-3 flex justify-center items-center gap-2">
+               <div className="flex items-center justify-evenly text-sm mt-2 gap-4">
+                <div className=" pl-4 pr-4 p-1 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
                    <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({(post.likeuser.length)})
                    <p>Love</p>
                 </div>
-                <Link to={`/home/showpost/${post._id}`}><div className="w-full p-3 flex justify-center items-center gap-2">
-                   <FontAwesomeIcon icon={faComment} className="text-lg"></FontAwesomeIcon>({post.Comment.length})
-                   <p>suggestion</p>
-                </div></Link>
-                <div className="w-full p-3 flex justify-center items-center gap-2">
-                   <FontAwesomeIcon icon={faShare} className="text-lg"></FontAwesomeIcon>
-                   <p>Share</p>
+                <div className="pl-4 pr-4 p-2 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
+                 <FontAwesomeIcon icon={faComment} className="text-lg"></FontAwesomeIcon>({post.Comment.length})
+                 <Link to={`/home/showpost/${post._id}`}><p>suggestion</p></Link>
                 </div>
                </div>
             </div>

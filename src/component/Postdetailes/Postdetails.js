@@ -42,7 +42,7 @@ const Postdetails = () => {
     }
     return (
         <div>
-            <div className=" shadow-sm p-2 lg:p-5 flex flex-col gap-1 mb-3">
+            <div className=" shadow-sm p-2 lg:p-5 flex flex-col gap-1 mb-3 overflow-x-auto">
             <div className="flex justify-between">
                 <div className="flex items-center gap-1" >
                 <div class="avatar online pr-2">
@@ -106,18 +106,15 @@ const Postdetails = () => {
                 </div>
                 }
               <div className="flex items-center justify-evenly text-sm mt-2 pl-2 pr-2">
-                <div className="w-full p-3 flex justify-center items-center gap-2">
+                <div className="pl-4 pr-4 p-1 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
                    <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
                    <p>Love</p>
                 </div>
-                <Link to={`/home/showpost/${post._id}`}><div className="w-full p-3 flex justify-center items-center gap-2">
+                <div className="pl-4 pr-4 p-2 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
                    <FontAwesomeIcon icon={faComment} className="text-lg"></FontAwesomeIcon>({post.Comment.length})
                    <p>suggestion</p>
-                </div></Link>
-                <div className="w-full p-3 flex justify-center items-center gap-2">
-                   <FontAwesomeIcon icon={faShare} className="text-lg"></FontAwesomeIcon>
-                   <p>Share</p>
                 </div>
+             
                </div>
                <div className="flex items-center gap-4 mt-5">
                 <div class="avatar online">
@@ -146,7 +143,7 @@ const Postdetails = () => {
                     <div className="flex flex-col gap-0 ml-12">
                     <div className="font-semibold text-sm flex items-center gap-3">
                       <p>{post.username}</p>
-                      <p className="font-semibold text-[10px] text-slate-400">{TimeSince(new Date(post.date))}</p>
+                      <p className="font-semibold text-[10px] text-slate-400">{TimeSince(new Date(post.date))} ago</p>
                     </div>
                     <div>
                         <p className="text-xs font-medium text-justify">{post.commecttext}</p>
