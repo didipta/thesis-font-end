@@ -11,7 +11,9 @@ const Allpost = ({post,refetch}) => {
     const {user}=useContext(AuthContext);
     const handelliKe=(id)=>
     {
+       
         PostLike(id,post.likeuser,user.email,refetch);
+        
     }
     return (
         <div key={post._id}>
@@ -39,13 +41,18 @@ const Allpost = ({post,refetch}) => {
                     <FontAwesomeIcon icon={faEllipsisV} className="text-lg"></FontAwesomeIcon>
                 </label>
                 <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                   {post.useremail===user.email&&<>
                     <li>
-                    <a class="justify-between">
-                    Edit
-                    </a>
-                    </li>
+                     <a class="justify-between">
+                     Edit
+                     </a>
+                     </li>
+                     <li><a>Delete</a></li>
+                   </>
+                     
+                   }
                     <li><a>Settings</a></li>
-                    <li><a>Delete</a></li>
+                    
                 </ul>
                 </div>
                 </div>
@@ -76,7 +83,7 @@ const Allpost = ({post,refetch}) => {
                 }
                <div className="flex items-center justify-evenly text-sm mt-2 pl-2 pr-2">
                 <div className="w-full p-3 flex justify-center items-center gap-2">
-                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
+                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({(post.likeuser.length)})
                    <p>Love</p>
                 </div>
                 <Link to={`/home/showpost/${post._id}`}><div className="w-full p-3 flex justify-center items-center gap-2">

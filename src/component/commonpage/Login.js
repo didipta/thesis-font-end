@@ -13,7 +13,7 @@ const Login = () => {
     const [pagechange,Setpagechange]=useState(false);
     const googleprovider=new GoogleAuthProvider();
     const location=useLocation();
-    const from=location.state?.from?.pathname || '/home';
+    const from='/home';
     const navigator=useNavigate();
     const handelgooglesignin=()=>
     {
