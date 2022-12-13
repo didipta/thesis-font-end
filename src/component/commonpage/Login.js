@@ -10,7 +10,7 @@ import { AuthContext } from '../Context/Authprovider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Usetoken from '../Hook/Usetoken';
 const Login = () => {
-    const { googlelogin}=useContext(AuthContext);
+    const { googlelogin,setLoading}=useContext(AuthContext);
     const [pagechange,Setpagechange]=useState(false);
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = Usetoken(loginUserEmail);
@@ -24,6 +24,7 @@ const Login = () => {
     }
     const handelgooglesignin=()=>
     {
+     localStorage.removeItem('Thankutoken');
       googlelogin(googleprovider)
       .then(res=>{
         const user=res.user;
@@ -45,6 +46,7 @@ const Login = () => {
         })
         .then(res => res.json())
         .then(data =>{
+            setLoading(false)
             setLoginUserEmail(user.email)
            
         })

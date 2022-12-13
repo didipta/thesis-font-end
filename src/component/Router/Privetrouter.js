@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading';
 const Privetrouter = ({children}) => {
     const {user,loading,signoutall,setLoading}=useContext(AuthContext);
     const location=useLocation();
-
+    console.log(loading)
     if(loading)
     {
         return <>
@@ -13,7 +13,7 @@ const Privetrouter = ({children}) => {
         
         </>;
     }
-    if(!user && localStorage.getItem('Thankutoken')===null)
+    else if(!user && localStorage.getItem('Thankutoken')===null)
     {
         setLoading(false);
         signoutall();

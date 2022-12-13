@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
 import 'react-photo-view/dist/react-photo-view.css';
-import {faEllipsisV,faHeart,faComment,faShare} from '@fortawesome/free-solid-svg-icons';
+import {faEllipsisV,faHeart,faComment,faTrash} from '@fortawesome/free-solid-svg-icons';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link, useLoaderData, useLocation, useNavigate, useRevalidator } from 'react-router-dom';
 import { TimeSince } from '../Hook/TimeSince';
@@ -11,6 +11,9 @@ import { useReducer } from 'react';
 import { Userdetails } from '../Hook/Userdetails';
 import { useForm } from 'react-hook-form';
 import { Comment } from '../Hook/Comment';
+import AllLikeshow from './AllLikeshow';
+import Delectcomment from './Delectcomment';
+import { useState } from 'react';
 const Postdetails = () => {
     const post = useLoaderData();
     const location=useLocation();
@@ -18,19 +21,28 @@ const Postdetails = () => {
     const navigator=useNavigate();
     const {user}=useContext(AuthContext);
     const userdetails=Userdetails(user);
+    const [commentid,setCommentid]=useState("");
     const { register,formState: { errors }, handleSubmit } = useForm();
     const ref=()=>{
         navigator(from, { replace: true });
     }
-   
     const handelliKe=(id)=>
     {
-        PostLike(id,post.likeuser,user.email,ref);
+        const newlike={
+            id:post.likeuser.length,
+            email:user.email,
+            useimg:userdetails.image,
+            username:userdetails.name
+
+        }
+       
+        PostLike(id,post.likeuser,newlike,ref);
         
     }
     const onSubmit = (data,e) =>
     {
         const comment={
+            id:post.Comment.length,
             username:userdetails.name,
             useremail:userdetails.email,
             userimage:userdetails.image,
@@ -105,9 +117,15 @@ const Postdetails = () => {
                     
                 </div>
                 }
+                {post.likeuser.length!==0&&
+                     <label htmlFor="like-model" className="p-2 flex items-center gap-1">
+                          <FontAwesomeIcon icon={faHeart} className="text-pink-400 text-xs"></FontAwesomeIcon> <p className="link text-xs text-blue-500">{post.likeuser[0].username}{post.likeuser.length===2&&","+post.likeuser[1].username}{post.likeuser.length>=3&&<>,others...</>}</p>
+                      </label>
+                }
+               
               <div className="flex items-center justify-evenly text-sm mt-2 pl-2 pr-2">
                 <div className="pl-4 pr-4 p-1 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
-                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
+                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x.email===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
                    <p>Love</p>
                 </div>
                 <div className="pl-4 pr-4 p-2 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
@@ -144,6 +162,7 @@ const Postdetails = () => {
                     <div className="font-semibold text-sm flex items-center gap-3">
                       <p>{post.username}</p>
                       <p className="font-semibold text-[10px] text-slate-400">{TimeSince(new Date(post.date))} ago</p>
+                      <label htmlFor="delect_comment" onClick={()=>setCommentid(post.id)} ><FontAwesomeIcon icon={faTrash} className="text-xs text-slate-500 cursor-pointer"></FontAwesomeIcon></label>
                     </div>
                     <div>
                         <p className="text-xs font-medium text-justify">{post.commecttext}</p>
@@ -154,6 +173,19 @@ const Postdetails = () => {
                 }
                </div>
             </div>
+            <AllLikeshow
+            likeuser={post.likeuser}
+            >
+
+            </AllLikeshow>
+            <Delectcomment
+            id={post._id}
+            commentid={commentid}
+            comment={ post.Comment}
+            
+            >
+
+            </Delectcomment>
         </div>
     );
 };

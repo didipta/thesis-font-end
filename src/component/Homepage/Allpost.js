@@ -7,12 +7,21 @@ import { Link } from 'react-router-dom';
 import { TimeSince } from '../Hook/TimeSince';
 import { PostLike } from '../Hook/PostLike';
 import { AuthContext } from '../Context/Authprovider';
+import { Userdetails } from '../Hook/Userdetails';
 const Allpost = ({post,refetch}) => {
     const {user}=useContext(AuthContext);
+    const userdetails=Userdetails(user);
     const handelliKe=(id)=>
     {
+        const newlike={
+            id:post.likeuser.length,
+            email:user.email,
+            useimg:userdetails.image,
+            username:userdetails.name
+
+        }
        
-        PostLike(id,post.likeuser,user.email,refetch);
+        PostLike(id,post.likeuser,newlike,refetch);
         
     }
     return (
@@ -83,7 +92,7 @@ const Allpost = ({post,refetch}) => {
                 }
                <div className="flex items-center justify-evenly text-sm mt-2 gap-4">
                 <div className=" pl-4 pr-4 p-1 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
-                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({(post.likeuser.length)})
+                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x.email===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({(post.likeuser.length)})
                    <p>Love</p>
                 </div>
                 <div className="pl-4 pr-4 p-2 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">

@@ -73,7 +73,8 @@ const Creactpost = ({setposttext,refetch}) => {
         fetch("https://thesis-node-js.vercel.app/posts", {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('Thankutoken')}`
             },
             body: JSON.stringify(post)
         })
