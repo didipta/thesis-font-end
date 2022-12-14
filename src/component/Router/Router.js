@@ -5,6 +5,7 @@ import Postpart from "../Homepage/Postpart";
 import Main from "../Layout/Main";
 import Postdetails from "../Postdetailes/Postdetails";
 import Profile from "../Profile/Profile";
+import Selectedprofile from "../Profile/Selectedprofile";
 import Privetrouter from "./Privetrouter";
 
 export const routers=createBrowserRouter([
@@ -39,6 +40,12 @@ export const routers=createBrowserRouter([
                     {
                         path:"/home/profile",
                         element:<Profile></Profile>
+                    }
+                    ,
+                    {
+                        path:"/home/selectedprofile/:email",
+                        element:<Selectedprofile></Selectedprofile>,
+                        loader: ({params}) => fetch(`https://thesis-node-js.vercel.app/users/${params.email}`)
                     }
                     
                 ]

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../Context/Authprovider';
 
 const AllLikeshow = ({likeuser}) => {
+    const {user}=useContext(AuthContext);
     return (
         <div>
         <input type="checkbox" id="like-model" className="modal-toggle" />
@@ -16,7 +19,7 @@ const AllLikeshow = ({likeuser}) => {
                         <img src={x.useimg} alt="" />
                     </div>
                 </div>
-                <div><p className="text-sm font-semibold text-blue-600">{x.username}</p></div>
+                <div><Link to={`/home/selectedprofile/${x.email}`}><p className="text-sm font-semibold text-blue-600">{user.email===x.email?"you":x.username}</p></Link></div>
                 </div>)
             }
         </div>

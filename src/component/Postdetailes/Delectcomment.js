@@ -8,6 +8,7 @@ const Delectcomment = ({ id,commentid,comment}) => {
     const navigator=useNavigate();
     const deletecomment=()=>
     {
+        
         const likearr=[...comment];
         const savelike=likearr.filter(x=>x.id!==commentid);
         const usercomment=[...savelike];

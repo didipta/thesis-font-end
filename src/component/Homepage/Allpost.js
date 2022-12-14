@@ -28,7 +28,7 @@ const Allpost = ({post,refetch}) => {
         <div key={post._id}>
             <div className=" shadow-sm shadow-slate-300 rounded-sm p-2 lg:p-5 flex flex-col gap-1 mb-3 overflow-x-auto">
                 <div className="flex justify-between">
-                <div className="flex items-center gap-1" >
+               <Link to={`/home/selectedprofile/${post.useremail}`}><div className="flex items-center gap-1" >
                 <div class="avatar online pr-2">
                     <div class="w-8 rounded-full">
                         <img src={post.userimage} alt="" />
@@ -43,7 +43,7 @@ const Allpost = ({post,refetch}) => {
                 </div>
                 
                 
-                </div>
+                </div></Link>
                 <div>
                 <div class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">

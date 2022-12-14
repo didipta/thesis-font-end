@@ -56,7 +56,7 @@ const Postdetails = () => {
         <div>
             <div className=" shadow-sm p-2 lg:p-5 flex flex-col gap-1 mb-3 overflow-x-auto">
             <div className="flex justify-between">
-                <div className="flex items-center gap-1" >
+            <Link to={`/home/selectedprofile/${post.useremail}`}> <div className="flex items-center gap-1" >
                 <div class="avatar online pr-2">
                     <div class="w-8 rounded-full">
                         <img src={post.userimage} alt="" />
@@ -71,7 +71,7 @@ const Postdetails = () => {
                 </div>
                 
                 
-                </div>
+                </div></Link>
                 <div>
                 <div class="dropdown dropdown-end">
                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -151,21 +151,27 @@ const Postdetails = () => {
                {errors.commecttext && <p role="alert" className="text-red-400 text-xs ml-20">{errors.commecttext?.message}</p>}
                <div>
                 {
-                   post.Comment.map((post)=><div className="flex p-2 relative mt-4">
+                   post.Comment.map((postc)=><div className="flex p-2 relative mt-4">
                     <div class="avatar absolute">
                     <div class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src={post.userimage} alt="" />
+                        <img src={postc.userimage} alt="" />
                     </div>
                     </div>
 
                     <div className="flex flex-col gap-0 ml-12">
                     <div className="font-semibold text-sm flex items-center gap-3">
-                      <p>{post.username}</p>
-                      <p className="font-semibold text-[10px] text-slate-400">{TimeSince(new Date(post.date))} ago</p>
-                      <label htmlFor="delect_comment" onClick={()=>setCommentid(post.id)} ><FontAwesomeIcon icon={faTrash} className="text-xs text-slate-500 cursor-pointer"></FontAwesomeIcon></label>
+                    <Link to={`/home/selectedprofile/${postc.useremail}`}><p>{postc.username}</p></Link>
+                      <p className="font-semibold text-[10px] text-slate-400">{TimeSince(new Date(postc.date))} ago</p>
+
+                      {
+                        (user.email===post.useremail || postc.useremail===user.email) && <label htmlFor="delect_comment"  onClick={()=>setCommentid(postc.id)}>
+                            <FontAwesomeIcon icon={faTrash} className="text-xs text-slate-500 cursor-pointer" ></FontAwesomeIcon>
+                        </label>
+                      }
+                     
                     </div>
                     <div>
-                        <p className="text-xs font-medium text-justify">{post.commecttext}</p>
+                        <p className="text-xs font-medium text-justify">{postc.commecttext}</p>
                     </div>
                     </div>
                     
@@ -186,6 +192,7 @@ const Postdetails = () => {
             >
 
             </Delectcomment>
+            
         </div>
     );
 };
