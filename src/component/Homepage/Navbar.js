@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHome, faFlag,faUserGroup,faCalendarWeek,faGear,faVideo,faRightToBracket} from '@fortawesome/free-solid-svg-icons'
+import {faHome, faFlag,faUserGroup,faCalendarWeek,faGear,faVideo,faRightToBracket,faPlane} from '@fortawesome/free-solid-svg-icons'
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Context/Authprovider';
@@ -31,8 +31,11 @@ const Navbar = () => {
                 <li>
                     <a className=""><FontAwesomeIcon icon={faCalendarWeek} className="text-slate-600  text-xl pr-2"></FontAwesomeIcon>  <span className="pl-4">Events</span></a>
                 </li>
+                <li className="lg:hidden">
+                    <NavLink to="/home/mindfresh" className={({isActive})=>isActive? "text-pink-500":undefined}><FontAwesomeIcon icon={faPlane} className="  text-xl pr-2"></FontAwesomeIcon>  <span className="text-slate-700 pl-3">Mind Fresh</span></NavLink>
+                </li>
                 <li>
-                    <a className=""><FontAwesomeIcon icon={faVideo} className="text-slate-600  text-xl pr-2"></FontAwesomeIcon>  <span className="pl-2">Watchs</span></a>
+                    <NavLink to="/home/watch" className={({isActive})=>isActive? "text-pink-500":undefined}><FontAwesomeIcon icon={faVideo} className=" text-xl pr-2"></FontAwesomeIcon>  <span className=" text-slate-700 pl-2">Watchs</span></NavLink>
                 </li>
             
                 <li>

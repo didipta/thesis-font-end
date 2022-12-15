@@ -3,9 +3,11 @@ import Login from "../commonpage/Login";
 import Home from "../Homepage/Home";
 import Postpart from "../Homepage/Postpart";
 import Main from "../Layout/Main";
+import Mindfresh from "../Mindfresh.js/Mindfresh";
 import Postdetails from "../Postdetailes/Postdetails";
 import Profile from "../Profile/Profile";
 import Selectedprofile from "../Profile/Selectedprofile";
+import Watchfile from "../Watch/Watchfile";
 import Privetrouter from "./Privetrouter";
 
 export const routers=createBrowserRouter([
@@ -47,7 +49,16 @@ export const routers=createBrowserRouter([
                         element:<Selectedprofile></Selectedprofile>,
                         loader: ({params}) => fetch(`https://thesis-node-js.vercel.app/users/${params.email}`)
                     }
-                    
+                    ,
+                    {
+                        path:"/home/mindfresh",
+                        element:<Mindfresh></Mindfresh>
+                    }
+                    ,
+                    {
+                        path:"/home/watch",
+                        element:<Watchfile></Watchfile>
+                    }
                 ]
             }
         ]

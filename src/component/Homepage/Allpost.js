@@ -28,7 +28,7 @@ const Allpost = ({post,refetch}) => {
         <div key={post._id}>
             <div className=" shadow-sm shadow-slate-300 rounded-sm p-2 lg:p-5 flex flex-col gap-1 mb-3 overflow-x-auto">
                 <div className="flex justify-between">
-               <Link to={`/home/selectedprofile/${post.useremail}`}><div className="flex items-center gap-1" >
+               <Link to={user.email===post.useremail?"/home/profile":`/home/selectedprofile/${post.useremail}`}><div className="flex items-center gap-1" >
                 <div class="avatar online pr-2">
                     <div class="w-8 rounded-full">
                         <img src={post.userimage} alt="" />
@@ -91,8 +91,8 @@ const Allpost = ({post,refetch}) => {
                 </div>
                 }
                <div className="flex items-center justify-evenly text-sm mt-2 gap-4">
-                <div className=" pl-4 pr-4 p-1 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
-                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x.email===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({(post.likeuser.length)})
+                <div className=" pl-4 pr-4 p-1 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200 cursor-pointer" onClick={()=>handelliKe(post._id)}>
+                   <button className="text-lg" ><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x.email===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({(post.likeuser.length)})
                    <p>Love</p>
                 </div>
                 <div className="pl-4 pr-4 p-2 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">

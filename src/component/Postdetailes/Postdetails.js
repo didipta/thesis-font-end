@@ -56,7 +56,7 @@ const Postdetails = () => {
         <div>
             <div className=" shadow-sm p-2 lg:p-5 flex flex-col gap-1 mb-3 overflow-x-auto">
             <div className="flex justify-between">
-            <Link to={`/home/selectedprofile/${post.useremail}`}> <div className="flex items-center gap-1" >
+            <Link to={user.email===post.useremail?"/home/profile":`/home/selectedprofile/${post.useremail}`}> <div className="flex items-center gap-1" >
                 <div class="avatar online pr-2">
                     <div class="w-8 rounded-full">
                         <img src={post.userimage} alt="" />
@@ -124,8 +124,8 @@ const Postdetails = () => {
                 }
                
               <div className="flex items-center justify-evenly text-sm mt-2 pl-2 pr-2">
-                <div className="pl-4 pr-4 p-1 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
-                   <button className="text-lg" onClick={()=>handelliKe(post._id)}><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x.email===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
+                <div className="pl-4 pr-4 p-1 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200 cursor-pointer" onClick={()=>handelliKe(post._id)}>
+                   <button className="text-lg" ><FontAwesomeIcon icon={faHeart} className={post.likeuser.some(x=>x.email===user.email)?"text-pink-400":"text-slate-700"} ></FontAwesomeIcon></button>({post.likeuser.length})
                    <p>Love</p>
                 </div>
                 <div className="pl-4 pr-4 p-2 rounded-md flex justify-center items-center gap-2 hover:bg-slate-200">
@@ -160,7 +160,7 @@ const Postdetails = () => {
 
                     <div className="flex flex-col gap-0 ml-12">
                     <div className="font-semibold text-sm flex items-center gap-3">
-                    <Link to={`/home/selectedprofile/${postc.useremail}`}><p>{postc.username}</p></Link>
+                    <Link to={user.email===postc.useremail?"/home/profile":`/home/selectedprofile/${post.useremail}`}><p>{user.email===postc.useremail?"You":postc.username}</p></Link>
                       <p className="font-semibold text-[10px] text-slate-400">{TimeSince(new Date(postc.date))} ago</p>
 
                       {

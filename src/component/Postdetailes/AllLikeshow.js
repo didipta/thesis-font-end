@@ -19,7 +19,7 @@ const AllLikeshow = ({likeuser}) => {
                         <img src={x.useimg} alt="" />
                     </div>
                 </div>
-                <div><Link to={`/home/selectedprofile/${x.email}`}><p className="text-sm font-semibold text-blue-600">{user.email===x.email?"you":x.username}</p></Link></div>
+                <div><Link to={user.email===x.email?"/home/profile":`/home/selectedprofile/${x.email}`}><p className="text-sm font-semibold text-blue-600">{user.email===x.email?"you":x.username}</p></Link></div>
                 </div>)
             }
         </div>
