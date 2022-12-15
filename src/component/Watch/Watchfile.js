@@ -1,17 +1,27 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Allsongshow } from '../Hook/Allsongshow';
+import Loading from '../Loading/Loading';
 
 const Watchfile = () => {
+   const [allsong,isLoading,refetch]=Allsongshow();
     return (
         <div>
+           
             <div className="mb-3 p-3">
-                <h1 className="font-semibold text-lg p-2">Youtube Song</h1>
+                <h1 className="font-semibold text-lg p-2"><span className="text-red-400 text-xl">Youtube</span> Song</h1>
                 <hr/>
             </div>
+            {
+                isLoading&&<Loading></Loading>
+            }
             <div className="grid lg:grid-cols-2 items-center gap-4 p-3">
-            <iframe className="w-full h-48 shadow-lg rounded-md" src="https://www.youtube.com/embed/PdaZJ7l0Lso"></iframe>
-            <iframe className="w-full h-48 shadow-lg rounded-md" src="https://www.youtube.com/embed/tasc11VSTmw"></iframe>
-            <iframe className="w-full h-48 shadow-lg rounded-md" src="https://www.youtube.com/embed/TWSL9WVSpbw"></iframe>
-            <iframe className="w-full h-48 shadow-lg rounded-md" src="https://www.youtube.com/embed/6ixhN9umyp4"></iframe>
+                {
+                    allsong.map(x=>
+                        <iframe className="w-full h-48 shadow-lg rounded-md" src={x.linkUrl}></iframe>
+                        )
+                }
+           
             
             
            

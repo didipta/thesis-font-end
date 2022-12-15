@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import Adminhome from "../Admin/Adminhome";
+import AdminLayout from "../Admin/AdminLayout";
 import Login from "../commonpage/Login";
 import Home from "../Homepage/Home";
 import Postpart from "../Homepage/Postpart";
@@ -61,6 +63,19 @@ export const routers=createBrowserRouter([
                     }
                 ]
             }
+        
         ]
     }
+    ,
+    {
+        path:"/Admin",
+        element:<AdminLayout></AdminLayout>,
+        children:[
+            {
+                path:"/Admin/home",
+                element:<Adminhome></Adminhome>
+            }
+        ]
+    }
+   
 ])
