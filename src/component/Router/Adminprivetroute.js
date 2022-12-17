@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../Context/Authprovider';
 import { Roleofuser } from '../Hook/Roleofuser';
 import Loading from '../Loading/Loading';
-const Privetrouter = ({children}) => {
+const Adminprivetroute = ({children}) => {
     const {user,loading,signoutall,setLoading}=useContext(AuthContext);
     const [userdetails,roleloading]=Roleofuser(user?.email);
     const location=useLocation();
@@ -16,7 +16,7 @@ const Privetrouter = ({children}) => {
         
         </>;
     }
-   if(userdetails!=="user" || !user || localStorage.getItem('Thankutoken')===null)
+   if(userdetails!=="Admin" || !user || localStorage.getItem('Thankutoken')===null)
     {
         setLoading(false);
         signoutall();
@@ -26,4 +26,4 @@ const Privetrouter = ({children}) => {
     return children;
 };
 
-export default Privetrouter;
+export default Adminprivetroute;

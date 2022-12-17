@@ -13,13 +13,14 @@ const Login = () => {
     const { googlelogin,setLoading}=useContext(AuthContext);
     const [pagechange,Setpagechange]=useState(false);
     const [loginUserEmail, setLoginUserEmail] = useState('');
-    const [token] = Usetoken(loginUserEmail);
+    const [token,userdetailsrole] = Usetoken(loginUserEmail);
+   
     const googleprovider=new GoogleAuthProvider();
     const location=useLocation();
     const from='/home';
     const navigator=useNavigate();
     if (token) {
-
+       
         navigator(from, { replace: true });
     }
     const handelgooglesignin=()=>
@@ -28,7 +29,7 @@ const Login = () => {
       googlelogin(googleprovider)
       .then(res=>{
         const user=res.user;
-
+         console.log(user)
         const userdetails={
             name:user.displayName,
             email:user.email,
@@ -46,6 +47,7 @@ const Login = () => {
         })
         .then(res => res.json())
         .then(data =>{
+            
             setLoading(false)
             setLoginUserEmail(user.email)
            
@@ -54,7 +56,6 @@ const Login = () => {
           {
             
           })
-        console.log(user)
     })
 }
     return (

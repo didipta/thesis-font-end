@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Adminhome from "../Admin/Adminhome";
 import AdminLayout from "../Admin/AdminLayout";
+import Allpost from "../Admin/Allpost";
 import Login from "../commonpage/Login";
 import Home from "../Homepage/Home";
 import Postpart from "../Homepage/Postpart";
@@ -10,6 +11,7 @@ import Postdetails from "../Postdetailes/Postdetails";
 import Profile from "../Profile/Profile";
 import Selectedprofile from "../Profile/Selectedprofile";
 import Watchfile from "../Watch/Watchfile";
+import Adminprivetroute from "./Adminprivetroute";
 import Privetrouter from "./Privetrouter";
 
 export const routers=createBrowserRouter([
@@ -69,11 +71,15 @@ export const routers=createBrowserRouter([
     ,
     {
         path:"/Admin",
-        element:<AdminLayout></AdminLayout>,
+        element:<Adminprivetroute><AdminLayout></AdminLayout></Adminprivetroute>,
         children:[
             {
-                path:"/Admin/home",
+                path:"/Admin/songadd",
                 element:<Adminhome></Adminhome>
+            },
+            {
+                path:"/Admin/Allpost",
+                element:<Allpost></Allpost>
             }
         ]
     }
