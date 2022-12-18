@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Usetoken from '../Hook/Usetoken';
 import { Userdetails } from '../Hook/Userdetails';
 import swal from 'sweetalert';
+import Forgetpass from './Forgetpass';
 const Signin = () => {
     const { siginwithemailpassword,setLoading,signoutall}=useContext(AuthContext);
     const[pass,setPass]=useState(false);
@@ -88,9 +89,10 @@ const Signin = () => {
             }
             
             </div>
-            
+            <label className="mr-48 font-medium text-sm cursor-pointer link text-blue-700" htmlFor="forget">Forget password</label>
             <button className="btn bg-rose-500 border-none text-white">Login</button>
             </form>
+            <Forgetpass></Forgetpass>
         </div>
     );
 };

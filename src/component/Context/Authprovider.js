@@ -88,7 +88,8 @@ const Authprovider = ({children}) => {
         upadateuserprofile,
         siginwithemailpassword,
         EmailVerification,
-        userrole,userolheadel
+        userrole,userolheadel,
+        forgetpass
         }
     return (
          <AuthContext.Provider value={authInfo}>

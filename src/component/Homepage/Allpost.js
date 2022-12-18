@@ -8,9 +8,11 @@ import { TimeSince } from '../Hook/TimeSince';
 import { PostLike } from '../Hook/PostLike';
 import { AuthContext } from '../Context/Authprovider';
 import { Userdetails } from '../Hook/Userdetails';
+import Postdelete from '../Postdetailes/Postdelete';
 const Allpost = ({post,refetch}) => {
     const {user}=useContext(AuthContext);
     const userdetails=Userdetails(user);
+   
     const handelliKe=(id)=>
     {
         const newlike={
@@ -56,7 +58,7 @@ const Allpost = ({post,refetch}) => {
                      Edit
                      </a>
                      </li>
-                     <li><a>Delete</a></li>
+                     <li><label htmlFor="post-delete" className="font-medium text-red-500" >Delete</label></li>
                    </>
                      
                    }
@@ -101,6 +103,12 @@ const Allpost = ({post,refetch}) => {
                 </div>
                </div>
             </div>
+            <Postdelete
+            postid={post._id}
+            refetch={refetch}
+            >
+
+            </Postdelete>
         </div>
     );
 };
