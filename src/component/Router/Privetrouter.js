@@ -11,7 +11,7 @@ const Privetrouter = ({children}) => {
     if(loading || roleloading)
     {
         return <>
-        {userdetails}
+        
         <Loading></Loading>
         
         </>;

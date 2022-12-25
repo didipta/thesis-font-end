@@ -58,7 +58,7 @@ const Allpost = ({post,refetch}) => {
                      Edit
                      </a>
                      </li>
-                     <li><label htmlFor="post-delete" className="font-medium text-red-500" >Delete</label></li>
+                     <li><label htmlFor={post._id} className="font-medium text-red-500">Delete</label></li>
                    </>
                      
                    }

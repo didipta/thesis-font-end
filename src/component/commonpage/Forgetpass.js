@@ -24,7 +24,7 @@ const Forgetpass = () => {
             <div className="modal-box relative">
                 <label htmlFor="forget" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                 <h3 className="text-lg font-bold text-justify">Please provide Your email</h3>
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center gap-2 items-center shadow shadow-slate-200 rounded-xl p-5 w-96 m-auto">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center gap-3 items-center shadow shadow-slate-200 rounded-xl p-5 m-auto">
                 <input type="email" {...register("Email", { required: "Email Address is required" })} 
                     aria-invalid={errors.Email ? "true" : "false"} 
                     className="input input-bordered input-sm w-full max-w-xs" 

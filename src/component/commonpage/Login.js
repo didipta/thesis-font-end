@@ -9,6 +9,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { AuthContext } from '../Context/Authprovider';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Usetoken from '../Hook/Usetoken';
+import ReactBanner from './ReactBanner';
 const Login = () => {
     const { googlelogin,setLoading}=useContext(AuthContext);
     const [pagechange,Setpagechange]=useState(false);
@@ -63,6 +64,7 @@ const Login = () => {
             <div class="flex flex-col lg:overflow-hidden lg:flex-row items-center gap-5 p-5 lg:p-20">
             <div class="grid flex-grow w-full lg:w-5/12">
             <Banner></Banner>
+            {/* <ReactBanner></ReactBanner> */}
             </div> 
             <div class="grid flex-grow p-2  lg:p-5  justify-center items-center">
                 {

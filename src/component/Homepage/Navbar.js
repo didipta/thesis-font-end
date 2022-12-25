@@ -23,7 +23,7 @@ const Navbar = () => {
                     </div> <span className="pl-2">{userdetails.name}</span></NavLink>
                 </li>
                 <li>
-                    <NavLink className={({isActive})=>isActive? "text-pink-500":undefined} to="/page"><FontAwesomeIcon icon={faFlag} className=" text-xl pr-5"></FontAwesomeIcon><span className=" text-slate-700 pl-2">Page</span> </NavLink>
+                    <NavLink ><FontAwesomeIcon icon={faFlag} className=" text-xl pr-5"></FontAwesomeIcon><span className=" text-slate-700 pl-2">Page</span> </NavLink>
                 </li>
                 <li>
                     <a className=""><FontAwesomeIcon icon={faUserGroup} className="text-slate-600  text-xl pr-2"></FontAwesomeIcon> <span className="pl-2">Groups</span></a>

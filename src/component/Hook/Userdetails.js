@@ -8,7 +8,7 @@ export const Userdetails = (user) => {
         .then(data => {
             setUserdetails(data)
         })
-    },[user?.email])
+    },[])
 
     return userdetails;
 };

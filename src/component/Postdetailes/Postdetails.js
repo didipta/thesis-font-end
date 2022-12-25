@@ -14,6 +14,7 @@ import { Comment } from '../Hook/Comment';
 import AllLikeshow from './AllLikeshow';
 import Delectcomment from './Delectcomment';
 import { useState } from 'react';
+import Postdelete from './Postdelete';
 const Postdetails = () => {
     const post = useLoaderData();
     const location=useLocation();
@@ -25,6 +26,9 @@ const Postdetails = () => {
     const { register,formState: { errors }, handleSubmit } = useForm();
     const ref=()=>{
         navigator(from, { replace: true });
+    }
+    const ref2=()=>{
+        navigator("/home");
     }
     const handelliKe=(id)=>
     {
@@ -84,7 +88,7 @@ const Postdetails = () => {
                      Edit
                      </a>
                      </li>
-                     <li><a>Delete</a></li>
+                     <li><label htmlFor={post._id} className="font-medium text-red-500">Delete</label></li>
                    </>
                      
                    }
@@ -192,7 +196,10 @@ const Postdetails = () => {
             >
 
             </Delectcomment>
-            
+            <Postdelete
+            postid={post._id}
+            refetch={ref2}
+            ></Postdelete>
         </div>
     );
 };

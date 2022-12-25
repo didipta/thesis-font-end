@@ -9,14 +9,17 @@ import Usetoken from '../Hook/Usetoken';
 import { Userdetails } from '../Hook/Userdetails';
 import swal from 'sweetalert';
 import Forgetpass from './Forgetpass';
+import Smallloading from '../Loading/Smallloading';
 const Signin = () => {
     const { siginwithemailpassword,setLoading,signoutall}=useContext(AuthContext);
     const[pass,setPass]=useState(false);
     const { register,formState: { errors }, handleSubmit } = useForm();
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token,userdetailsrole] = Usetoken(loginUserEmail);
+    const [loadingd,setLoadingd]=useState(false);
     const navigator=useNavigate();
-    
+    const [message,setMessage]=useState("");
+    console.log(message)
     if (token) {
         if(userdetailsrole==="user")
         {
@@ -32,6 +35,7 @@ const Signin = () => {
     }
     const onSubmit = (data,e) =>
     {
+        setLoadingd(true);
         localStorage.removeItem('Thankutoken');
         siginwithemailpassword(data.Email,data.Password)
         .then(res=>{
@@ -58,11 +62,12 @@ const Signin = () => {
               
                 setLoading(false)
                 setLoginUserEmail(user.email)
+                setLoadingd(false)
+
                
             })
             .catch(e=>
               {
-               
               })
           }
           else
@@ -73,6 +78,11 @@ const Signin = () => {
           }
           
       })
+      .catch(e=>
+        {
+          setMessage("Please Check your Email or password")
+          setLoadingd(false)
+        })
       
     }
     return (
@@ -89,8 +99,14 @@ const Signin = () => {
             }
             
             </div>
-            <label className="mr-48 font-medium text-sm cursor-pointer link text-blue-700" htmlFor="forget">Forget password</label>
-            <button className="btn bg-rose-500 border-none text-white">Login</button>
+            <label className="font-medium text-xs cursor-pointer link text-blue-700 w-full max-w-xs" htmlFor="forget">Forget password</label>
+            {
+             message!==""&&<label className="font-medium text-xs  text-red-500 w-full max-w-xs">{message}</label>
+            }
+            <button className="btn bg-rose-500 border-none text-white">
+            {!loadingd?"Login":<Smallloading></Smallloading>}
+                
+                </button>
             </form>
             <Forgetpass></Forgetpass>
         </div>

@@ -7,14 +7,17 @@ import { useForm } from 'react-hook-form';
 import swal from 'sweetalert';
 import { AuthContext } from '../Context/Authprovider';
 import { toast, Toaster } from 'react-hot-toast';
+import Smallloading from '../Loading/Smallloading';
 
 const Signup = () => {
     const { createuser,upadateuserprofile,signoutall,EmailVerification}=useContext(AuthContext);
     const { register,formState: { errors }, handleSubmit } = useForm();
     const[pass,setPass]=useState(false);
     const [click,setClick]=useState(false);
+    const [loadingd,setLoadingd]=useState(false);
     const onSubmit = (data,e) =>
     {
+        setLoadingd(true);
         localStorage.removeItem('Thankutoken');
         createuser(data.Email,data.Password)
          .then(res=>
@@ -27,7 +30,7 @@ const Signup = () => {
 
                  signoutall();
                  e.target.reset();
-                 
+                 setLoadingd(false)
              })
              .catch(error =>{
                 swal("Email Same!", "This email already have an account!");
@@ -82,7 +85,9 @@ const Signup = () => {
             </div>
             {errors.Password && <p role="alert" className="text-red-400 text-xs">{errors.Password?.message}</p>}
             <div className="  text-sm font-semibold flex justify-center items-center gap-2"><input type="checkbox"  class="checkbox checkbox-sm" onClick={(e)=>setClick(e.target.checked)}/><div className="">Accept <label htmlFor="Terms_condition"  className="text-sky-600 text-xs link">Terms and condition</label></div></div>
-            <button className="btn bg-rose-500 border-none text-white" disabled={click?false:true}>Submit</button>
+            <button className="btn bg-rose-500 border-none text-white" disabled={click?false:true}>
+            {!loadingd?"Submit":<Smallloading></Smallloading>}
+                </button>
 
             </form>
             <Termsandcondition></Termsandcondition>

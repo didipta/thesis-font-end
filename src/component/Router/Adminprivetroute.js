@@ -11,7 +11,6 @@ const Adminprivetroute = ({children}) => {
     if(loading || roleloading)
     {
         return <>
-        {userdetails}
         <Loading></Loading>
         
         </>;
