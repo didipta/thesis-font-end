@@ -39,7 +39,13 @@ const Header = () => {
           </div>
         </button>
 
-        <Link to="/home/chat"><button class="btn btn-ghost btn-circle bg-white shadow-lg shadow-slate-400 fixed bottom-3 right-3">
+        <Link to="/home/chat"><button class="btn btn-ghost btn-circle bg-white shadow-lg shadow-slate-400 fixed bottom-3 right-3 hidden lg:block">
+          <div class="indicator">
+           <img src={img} alt="" className='w-10 h-10'></img>
+            <span class="badge badge-xs bg-pink-500 border-none text-white indicator-item">0</span>
+          </div>
+        </button></Link>
+        <Link to="/home/chat"><button class="btn btn-ghost btn-circle bg-white shadow-lg shadow-slate-400 lg:hidden">
           <div class="indicator">
            <img src={img} alt="" className='w-10 h-10'></img>
             <span class="badge badge-xs bg-pink-500 border-none text-white indicator-item">0</span>

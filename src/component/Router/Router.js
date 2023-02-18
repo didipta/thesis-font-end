@@ -4,6 +4,7 @@ import Ahome from "../Admin/Adminhome/Ahome";
 import AdminLayout from "../Admin/AdminLayout";
 import Allpost from "../Admin/Allpost";
 import Chat from "../Chat/Chat";
+import Chatfild from "../Chat/Chatfild";
 import Errorpage from "../commonpage/Errorpage";
 import Login from "../commonpage/Login";
 import Home from "../Homepage/Home";
@@ -80,6 +81,11 @@ export const routers=createBrowserRouter([
                     {
                         path:"/home/chat",
                         element:<Chat></Chat>
+                    },
+                    {
+                        path:"/home/chatfild/:email",
+                        element:<Chatfild></Chatfild>,
+                        loader: ({params}) => fetch(`https://thesis-node-js.vercel.app/users/${params.email}`)
                     }
                 ]
             }

@@ -164,7 +164,7 @@ const Postdetails = () => {
 
                     <div className="flex flex-col gap-0 ml-12">
                     <div className="font-semibold text-sm flex items-center gap-3">
-                    <Link to={user.email===postc.useremail?"/home/profile":`/home/selectedprofile/${post.useremail}`}><p>{user.email===postc.useremail?"You":postc.username}</p></Link>
+                    <Link to={user.email===postc.useremail?"/home/profile":`/home/selectedprofile/${postc.useremail}`}><p>{user.email===postc.useremail?"You":postc.username}</p></Link>
                       <p className="font-semibold text-[10px] text-slate-400">{TimeSince(new Date(postc.date))} ago</p>
 
                       {

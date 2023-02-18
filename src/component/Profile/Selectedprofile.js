@@ -1,5 +1,6 @@
 
 import React, { useContext } from 'react';
+import img from "../img/chat.png"
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import Allpost from '../Homepage/Allpost';
 import { AuthContext } from '../Context/Authprovider';
@@ -7,7 +8,7 @@ import { Userdetails } from '../Hook/Userdetails';
 import Loading from '../Loading/Loading';
 import Smallloading from '../Loading/Smallloading';
 import { Allpostshow } from '../Hook/Allpostshow';
-import { useLoaderData, useNavigate, useNavigation} from 'react-router-dom';
+import { Link, useLoaderData, useNavigate, useNavigation} from 'react-router-dom';
 const Selectedprofile = () => {
     const {user}=useContext(AuthContext);
     const userdetails =useLoaderData();
@@ -45,11 +46,16 @@ const Selectedprofile = () => {
                 
             </div>
             </div>
-            
+            <div className="flex justify-around items-center gap-5">
             <div>
                 <h1 className="font-semibold text-2xl mt-3 mb-2">{userdetails?.name}</h1>
                 <p className="text-sm font-medium text-slate-400">{userdetails?.email}</p>
             </div>
+           <Link to={`/home/chatfild/${userdetails?.email}`}><div className="w-10 h-10 rounded-full flex justify-center items-center shadow-lg tooltip tooltip-top" data-tip="Message">
+                <img src={img} alt="" className="w-7 h-7"></img>
+            </div></Link>
+            </div>
+            
             </div>
         </div> 
         <div className="mt-5">
