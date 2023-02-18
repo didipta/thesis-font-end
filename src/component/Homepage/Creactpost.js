@@ -132,7 +132,7 @@ const Creactpost = ({setposttext,refetch}) => {
                     <FontAwesomeIcon icon={faPhotoFilm} className="text-lg text-green-500"></FontAwesomeIcon>
                     <p>Photo/Video</p>
                 </label>
-                <div className="flex gap-2 items-center p-3">
+                <div className="lg:flex gap-2 items-center p-3 hidden">
                     <FontAwesomeIcon icon={faFaceSmile} className="text-lg text-yellow-500"></FontAwesomeIcon>
                     <p>Feeling/activity</p>
                 </div>

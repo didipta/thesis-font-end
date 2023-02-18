@@ -19,9 +19,9 @@ const AdminLayout = () => {
         </div>
         <div className="drawer-side">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-            <ul className="menu p-4 w-80 text-base-content">
-
-            <li><NavLink className={({isActive})=>isActive? "text-pink-500 font-semibold":undefined} to="/Admin/songadd" >SongAdd</NavLink></li>
+            <ul className="menu p-4 w-80 text-base-content lg:bg-transparent bg-base-100">
+            <li><NavLink className={({isActive})=>isActive? "text-pink-500 font-semibold":undefined} to="/Admin" >Home</NavLink></li>
+            <li><NavLink className={({isActive})=>isActive? "text-pink-500 font-semibold":undefined} to="/Admin/songadd" >All Song</NavLink></li>
             <li><NavLink className={({isActive})=>isActive? "text-pink-500 font-semibold":undefined} to="/Admin/Allpost" >All Post</NavLink></li>
             <li>
                     <Link to="/" onClick={signoutall} className="" >Logout</Link>

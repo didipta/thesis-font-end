@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Usetoken from '../Hook/Usetoken';
 import ReactBanner from './ReactBanner';
 const Login = () => {
-    const { googlelogin,setLoading}=useContext(AuthContext);
+    const { googlelogin,setLoading,signoutall}=useContext(AuthContext);
     const [pagechange,Setpagechange]=useState(false);
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token,userdetailsrole] = Usetoken(loginUserEmail);
@@ -26,7 +26,7 @@ const Login = () => {
     }
     const handelgooglesignin=()=>
     {
-     localStorage.removeItem('Thankutoken');
+        signoutall();
       googlelogin(googleprovider)
       .then(res=>{
         const user=res.user;

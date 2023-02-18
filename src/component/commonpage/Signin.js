@@ -35,6 +35,7 @@ const Signin = () => {
     }
     const onSubmit = (data,e) =>
     {
+        signoutall();
         setLoadingd(true);
         localStorage.removeItem('Thankutoken');
         siginwithemailpassword(data.Email,data.Password)

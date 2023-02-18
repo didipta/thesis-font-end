@@ -17,6 +17,7 @@ const Signup = () => {
     const [loadingd,setLoadingd]=useState(false);
     const onSubmit = (data,e) =>
     {
+        signoutall();
         setLoadingd(true);
         localStorage.removeItem('Thankutoken');
         createuser(data.Email,data.Password)

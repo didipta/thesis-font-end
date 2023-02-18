@@ -1,13 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import Adminhome from "../Admin/Adminhome";
+import Ahome from "../Admin/Adminhome/Ahome";
 import AdminLayout from "../Admin/AdminLayout";
 import Allpost from "../Admin/Allpost";
+import Chat from "../Chat/Chat";
 import Errorpage from "../commonpage/Errorpage";
 import Login from "../commonpage/Login";
 import Home from "../Homepage/Home";
 import Postpart from "../Homepage/Postpart";
 import Main from "../Layout/Main";
+import Legalaid from "../Legalaid/Legalaid";
 import Mindfresh from "../Mindfresh.js/Mindfresh";
+import Otherinfo from "../otherinfo/Otherinfo";
 import Postdetails from "../Postdetailes/Postdetails";
 import Profile from "../Profile/Profile";
 import Selectedprofile from "../Profile/Selectedprofile";
@@ -64,6 +68,18 @@ export const routers=createBrowserRouter([
                     {
                         path:"/home/watch",
                         element:<Watchfile></Watchfile>
+                    },
+                    {
+                        path:"/home/otherinfo",
+                        element:<Otherinfo></Otherinfo>
+                    },
+                    {
+                        path:"/home/legaleaid",
+                        element:<Legalaid></Legalaid>
+                    },
+                    {
+                        path:"/home/chat",
+                        element:<Chat></Chat>
                     }
                 ]
             }
@@ -75,6 +91,11 @@ export const routers=createBrowserRouter([
         path:"/Admin",
         element:<Adminprivetroute><AdminLayout></AdminLayout></Adminprivetroute>,
         children:[
+            {
+               path:"/Admin",
+               element:<Ahome></Ahome>
+
+            },
             {
                 path:"/Admin/songadd",
                 element:<Adminhome></Adminhome>

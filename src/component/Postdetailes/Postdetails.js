@@ -144,9 +144,9 @@ const Postdetails = () => {
                     <img src={userdetails.image} />
                 </div>
                 </div>
-                <div>
+                <div className="w-auto">
                     <form className=" w-full flex items-center bg-slate-200 rounded-3xl font-medium p-2" onSubmit={handleSubmit(onSubmit)}>
-                    <textarea type="text" cols="90" rows="1" {...register("commecttext", { required: "Suggestion is required" })}   className="w-full outline-none bg-slate-200 p-2 resize-none   text-sm " placeholder="Please Sheare your suggestion...."/>
+                    <textarea type="text" cols="90" rows="1" {...register("commecttext", { required: "Suggestion is required" })}   className="w-full outline-none bg-slate-200 p-2 resize-none   text-sm " placeholder="Please Share your suggestion...."/>
                     <button className="bg-pink-500 btn-sm border-none text-white rounded-xl">Send</button>
                     </form>
                     
