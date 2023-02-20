@@ -7,53 +7,49 @@ import img5 from "../img/francisco-gonzalez-M8UEJd58GcE-unsplash.jpg"
 import img6 from "../img/kristina-tripkovic-nwWUBsW6ud4-unsplash.jpg"
 import img7 from "../img/pexels-pixabay-256455.jpg"
 import img8 from "../img/sydney-sims-fZ2hMpHIrbI-unsplash.jpg"
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 const Banner = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow:1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 4000,
+    autoplaySpeed: 4000,
+    cssEase: "linear"
+  };
+  const image=[img1,img2,img3,img4,img5,img6,img7,img8]
     return (
-        <div>
-  <div className="carousel w-full h-[30vh] lg:h-[60vh]  border-rose-300 border-4">
-  <div id="slide1" className="carousel-item relative w-full ">
-    <img src={img1} className="w-full " />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide4" className="btn btn-circle bg-rose-500 border-none btn-sm">❮</a> 
-      <a href="#slide2" className="btn btn-circle bg-rose-500 border-none btn-sm">❯</a>
-    </div>
-  </div> 
-  <div id="slide2" className="carousel-item relative w-full">
-    <img src={img8} className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide1" className="btn btn-circle bg-rose-500 border-none btn-sm">❮</a> 
-      <a href="#slide3" className="btn btn-circle bg-rose-500 border-none btn-sm">❯</a>
-    </div>
-  </div> 
-  <div id="slide3" className="carousel-item relative w-full">
-    <img src={img3} className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide2" className="btn btn-circle bg-rose-500 border-none btn-sm">❮</a> 
-      <a href="#slide4" className="btn btn-circle bg-rose-500 border-none btn-sm">❯</a>
-    </div>
-  </div> 
-  <div id="slide4" className="carousel-item relative w-full">
-    <img src={img5} className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide3" className="btn btn-circle bg-rose-500 border-none btn-sm">❮</a> 
-      <a href="#slide5" className="btn btn-circle bg-rose-500 border-none btn-sm">❯</a>
-    </div>
-  </div>
-  <div id="slide5" className="carousel-item relative w-full">
-    <img src={img6} className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide4" className="btn btn-circle bg-rose-500 border-none btn-sm">❮</a> 
-      <a href="#slide6" className="btn btn-circle bg-rose-500 border-none btn-sm">❯</a>
-    </div>
-  </div>
-  <div id="slide6" className="carousel-item relative w-full">
-    <img src={img7} className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide5" className="btn btn-circle bg-rose-500 border-none btn-sm">❮</a> 
-      <a href="#slide1" className="btn btn-circle bg-rose-500 border-none btn-sm">❯</a>
-    </div>
-  </div>
-</div>
+        <div className="overflow-hidden">
+            <Slider {...settings}>
+            <div>
+          <img src={img1} alt="" className="w-11/12 h-96"></img>
+          </div>
+            <div>
+          <img src={img2} alt="" className="w-11/12 h-96"></img>
+          </div>
+            <div>
+          <img src={img3} alt="" className="w-11/12 h-96"></img>
+          </div>
+            <div>
+          <img src={img4} alt="" className="w-11/12 h-96"></img>
+          </div>
+            <div>
+          <img src={img5} alt="" className="w-11/12 h-96"></img>
+          </div>
+            <div>
+          <img src={img6} alt="" className="w-11/12 h-96"></img>
+          </div>
+            <div>
+          <img src={img7} alt="" className="w-11/12 h-96"></img>
+          </div>
+            <div>
+          <img src={img8} alt="" className="w-11/12 h-96"></img>
+          </div>
+        </Slider>
         </div>
     );
 };
