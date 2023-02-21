@@ -18,13 +18,17 @@ const Chat = () => {
             <div className="p-5 flex flex-col gap-5">
                 {
                     allusers.filter(u=>u.email!==user.email).map(user =>
-                        <Link to={`/home/chatfild/${user?.email}`}><div className="flex items-center gap-2">
+                        <Link to={`/home/chatfild/${user?.email}`}><div className="flex items-center gap-2 bg-pink-100 p-3 rounded-2xl">
                             <div className="avatar online">
                             <div className="w-8 rounded-full">
                                 <img src={user.image} />
                             </div>
                             </div>
+                            <div>
                             <h1 className="font-medium">{user.name}</h1>
+                            <p className="text-xs text-slate-400">Open Your message</p>
+                            </div>
+                           
                         </div></Link>
                         )
                 }

@@ -110,11 +110,11 @@ const Postdetails = () => {
                 
                 {
                 post.postimg!==""&&
-                <div className="overflow-hidden h-80 p-3">
+                <div className="overflow-hidden p-3">
                     <figure>
                         <PhotoProvider>
                         <PhotoView src={post.postimg}>
-                        <img src={post.postimg} alt='' className="w-full h-96"></img>
+                        <img src={post.postimg} alt='' className="w-full"></img>
                         </PhotoView>
                         </PhotoProvider>
                         </figure>
