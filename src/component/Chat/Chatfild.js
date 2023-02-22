@@ -57,6 +57,10 @@ const Chatfild = () => {
             message:message,
             date:new Date(),
         }
+        const newsendmsg={
+            myself:true,message:message,date:new Date()
+        }
+        Setallmessage([...allmessage,newsendmsg]);
         socket.current.emit("send-msg",{
             to:userdetails._id,
             from:userdetail._id,
@@ -115,7 +119,7 @@ const Chatfild = () => {
 
             </div>
                 
-                <div className="h-[84vh] overflow-scroll p-3 mt-1">
+                <div className="h-[80vh] overflow-scroll p-3 mt-1">
                    <Chatbox userdetails={userdetails} allchart={allmessage} isLoading={isLoading}></Chatbox>
                 </div>
     
