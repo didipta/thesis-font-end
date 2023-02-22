@@ -119,11 +119,11 @@ const Chatfild = () => {
 
             </div>
                 
-                <div className="h-[80vh] overflow-scroll p-3 mt-1">
+                <div className="h-[83vh] overflow-scroll p-3 mt-1">
                    <Chatbox userdetails={userdetails} allchart={allmessage} isLoading={isLoading}></Chatbox>
                 </div>
     
-                <div className="w-full shadow-xl pl-4 pr-4 pt-0 pb-3 absolute bottom-0 rounded-2xl bg-slate-100">
+                <div className="w-full shadow-xl pl-4 pr-4 pt-0 pb-3 absolute bottom-4 rounded-2xl bg-slate-100">
                 <label className=' flex items-center gap-3 mt-3'>
                 <input type="text" placeholder="Message" className="border-none outline-none w-full min-w-xs bg-slate-100" value={message} onChange={(e)=>setMessage(e.target.value)}/>
                 <button className="" onClick={handelsend} className="bg-slate-400 pl-4 pr-4 pt-1 pb-1 rounded-xl"><img src={img} alt="" className="w-10"></img></button>
