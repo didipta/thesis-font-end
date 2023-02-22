@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/Authprovider';
@@ -10,13 +10,26 @@ import Loading from '../Loading/Loading';
 const Chatbox = ({userdetails,allchart,isLoading}) => {
     const {user}=useContext(AuthContext);
     const userdetail=Userdetails(user);
+
+    const [loading,setloading]=useState(false);
+
+    useEffect(()=>{
+        setTimeout(()=>
+      {
+        setloading(true);
+      },2000)
+       
+    })
     
     
     console.log(allchart)
     return (
         <div>
-            {
-                isLoading||allchart.length===0?<div>{allchart.length===0?<div>No message available</div>:<Loading></Loading>}</div>:
+            <div>
+                {
+                    !loading?<Loading></Loading>:<div>
+                         {
+                isLoading?<div>{allchart.length===0?<div>No message available</div>:<Loading></Loading>}</div>:
                 <>
                  {
                 allchart.map(x=>
@@ -61,6 +74,10 @@ const Chatbox = ({userdetails,allchart,isLoading}) => {
      
                 </>
             }
+                    </div>
+                }
+            </div>
+           
 
            
       

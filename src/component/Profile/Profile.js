@@ -8,12 +8,22 @@ import { Userdetails } from '../Hook/Userdetails';
 import Loading from '../Loading/Loading';
 import Smallloading from '../Loading/Smallloading';
 import { Allpostshow } from '../Hook/Allpostshow';
+import { useState } from 'react';
+import { useEffect } from 'react';
 const Profile = () => {
     const {user}=useContext(AuthContext);
     const userdetails=Userdetails(user);
     const [allpost,refetch,isLoading]=Allpostshow(user.email);
     console.log(userdetails)
-    
+    const [loading,setloading]=useState(false);
+
+    useEffect(()=>{
+        setTimeout(()=>
+      {
+        setloading(true);
+      },2000)
+       
+    })
     return (
         <div>
            <div className="relative h-96">
@@ -52,7 +62,9 @@ const Profile = () => {
             </div>
         </div> 
         <div className="mt-5">
-        {
+       {
+        !loading?<Loading></Loading>:<div>
+             {
                 isLoading&&<Loading></Loading>
             }
             {
@@ -60,6 +72,8 @@ const Profile = () => {
                 <p>No post available</p>
             </div>
             }
+        </div>
+       }
         </div>
         </div>
     );

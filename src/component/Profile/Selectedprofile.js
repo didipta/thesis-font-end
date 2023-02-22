@@ -9,6 +9,8 @@ import Loading from '../Loading/Loading';
 import Smallloading from '../Loading/Smallloading';
 import { Allpostshow } from '../Hook/Allpostshow';
 import { Link, useLoaderData, useNavigate, useNavigation} from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
 const Selectedprofile = () => {
     const {user}=useContext(AuthContext);
     const userdetails =useLoaderData();
@@ -22,7 +24,15 @@ const Selectedprofile = () => {
    
     const [allpost,refetch,isLoading]=Allpostshow(userdetails.email);
     console.log(userdetails)
-    
+    const [loading,setloading]=useState(false);
+
+    useEffect(()=>{
+        setTimeout(()=>
+      {
+        setloading(true);
+      },2000)
+       
+    })
     return (
         <div>
              {
@@ -59,7 +69,9 @@ const Selectedprofile = () => {
             </div>
         </div> 
         <div className="mt-5">
-        {
+       {
+        !loading?<Loading></Loading>:<div>
+             {
                 isLoading&&<Loading></Loading>
             }
             {
@@ -67,6 +79,9 @@ const Selectedprofile = () => {
                 <p>No post available</p>
             </div>
             }
+            
+        </div>
+       }
         </div>
         </div>
     );
