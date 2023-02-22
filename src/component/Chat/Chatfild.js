@@ -9,6 +9,10 @@ import Chatbox from './Chatbox';
 import { io } from 'socket.io-client';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faRefresh} from '@fortawesome/free-solid-svg-icons';
+import Loading from '../Loading/Loading';
+import img from "../img/2343805.png"
 const Chatfild = () => {
     const {user}=useContext(AuthContext);
     const userdetail=Userdetails(user);
@@ -22,12 +26,18 @@ const Chatfild = () => {
     },[allchart])
     console.log(allmessage);
     const socket=useRef();
-    const [arrivalmessage,setarrivalmessage]=useState(null);
-
+    const [arrivalmessage,setarrivalmessage]=useState({});
+    const [load,setload]=useState(false);
+    const Refresh=()=>
+    {
+        setload(true)
+        refetch();
+        setload(false)
+    }
 
     useEffect(()=>{
         refetch();
-    },[])
+    },[userdetail._id,userdetails._id])
 
 
     useEffect(()=>{
@@ -76,17 +86,21 @@ const Chatfild = () => {
         if(socket.current)
         {
             socket.current.on("msg-receive",(msg)=>{
-                setarrivalmessage({myself:false,message:msg})
+                console.log(msg)
+                setarrivalmessage({myself:false,message:msg,date:new Date()})
             })
         }
-    },[arrivalmessage])
+    },[socket.current])
+
 
     useEffect(()=>{
        arrivalmessage && Setallmessage((pre)=>[...pre],arrivalmessage)
      },[arrivalmessage])
     return (
-        <div className=" relative h-[90vh]">
-                <Link to={`/home/selectedprofile/${userdetails.email}`}><div className="flex items-center gap-3 p-5 shadow-lg">
+        <div className=" relative h-screen">
+            <div className="flex p-4 justify-between items-center shadow-lg">
+
+            <Link to={`/home/selectedprofile/${userdetails.email}`}><div className="flex items-center gap-3">
                 <div className="avatar online">
                 <div className="w-8 rounded-full">
                 <img src={userdetails.image} alt=""></img>
@@ -94,14 +108,21 @@ const Chatfild = () => {
                 </div>
                     <p className="font-medium">{userdetails.name}</p>
                 </div></Link>
-                <div className="h-[65vh] overflow-scroll p-3 mt-3">
+
+                <div className="tooltip cursor-pointer tooltip-left" data-tip="Message Refresh" onClick={Refresh}>
+                   {load?<div className="w-12"><Loading></Loading></div>:<FontAwesomeIcon icon={faRefresh} className="text-pink-600 font-semibold"></FontAwesomeIcon>} 
+                </div>
+
+            </div>
+                
+                <div className="h-[84vh] overflow-scroll p-3 mt-1">
                    <Chatbox userdetails={userdetails} allchart={allmessage} isLoading={isLoading}></Chatbox>
                 </div>
     
-                <div className="w-full shadow-xl p-3 h-20 absolute bottom-2 rounded-2xl">
+                <div className="w-full shadow-xl pl-4 pr-4 pt-0 pb-3 absolute bottom-0 rounded-2xl bg-slate-100">
                 <label className=' flex items-center gap-3 mt-3'>
-                <input type="text" placeholder="Message" className="border-none outline-none w-full min-w-xs" value={message} onChange={(e)=>setMessage(e.target.value)}/>
-                <button className="btn btn-sm" onClick={handelsend}>send</button>
+                <input type="text" placeholder="Message" className="border-none outline-none w-full min-w-xs bg-slate-100" value={message} onChange={(e)=>setMessage(e.target.value)}/>
+                <button className="" onClick={handelsend} className="bg-slate-400 pl-4 pr-4 pt-1 pb-1 rounded-xl"><img src={img} alt="" className="w-10"></img></button>
                 </label>
                 
                 

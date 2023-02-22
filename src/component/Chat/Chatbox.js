@@ -16,7 +16,7 @@ const Chatbox = ({userdetails,allchart,isLoading}) => {
     return (
         <div>
             {
-                isLoading||allchart.length===0?<Loading></Loading>:
+                isLoading||allchart.length===0?<div>{allchart.length===0?<div>No message available</div>:<Loading></Loading>}</div>:
                 <>
                  {
                 allchart.map(x=>
@@ -29,21 +29,26 @@ const Chatbox = ({userdetails,allchart,isLoading}) => {
                          <img src={userdetails.image} alt="" />
                          </div>
                      </div>
-                     <div className="chat-header font-medium text-xs pb-2 pl-4">
+                     <div className="chat-header font-medium text-xs pb-2 pl-1">
                          {userdetails.name}
-                         <time className="text-xs opacity-50 ml-2">{TimeSince(new Date(x.date))}</time>
                      </div>
-                     <div className="chat-bubble bg-pink-200 text-slate-600 font-medium text-sm">{x.message}</div>
+                     <div className="chat-bubble bg-pink-200 text-slate-600 font-medium text-sm flex flex-col gap-2">{x.message}
+                     <time className="text-[10px] opacity-50 flex justify-end items-end">sent {TimeSince(new Date(x.date))} ago</time>
+                     </div>
                      
                      </div>
                      </div>:
                         <div>
                         <div className="chat chat-end">
-                          <div className="chat-header font-medium text-xs pb-2 pr-4">
-                              {userdetail.name}
-                              <time className="text-xs opacity-50 ml-2">{TimeSince(new Date(x.date))}</time>
+                          <div className="chat-header font-medium text-xs pb-2 pr-1">
+                         
+                            {userdetail.name}
+                             
                           </div>
-                          <div className="chat-bubble bg-slate-200 text-slate-600 font-medium text-sm" >{x.message}</div>
+                          <div className="chat-bubble bg-slate-200 text-slate-600 font-medium text-sm flex flex-col gap-2" >{x.message}
+                          <time className="text-[10px] opacity-50 flex justify-end items-end">sent {TimeSince(new Date(x.date))} ago</time>
+                          </div>
+                         
                           </div>
                         </div>
                     }
