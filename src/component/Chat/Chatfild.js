@@ -10,9 +10,10 @@ import { io } from 'socket.io-client';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faRefresh} from '@fortawesome/free-solid-svg-icons';
+import {faRefresh,faIcons} from '@fortawesome/free-solid-svg-icons';
 import Loading from '../Loading/Loading';
 import img from "../img/2343805.png"
+import EmojiPicker from 'emoji-picker-react';
 const Chatfild = () => {
     const {user}=useContext(AuthContext);
     const userdetail=Userdetails(user);
@@ -28,6 +29,7 @@ const Chatfild = () => {
     const socket=useRef();
     const [arrivalmessage,setarrivalmessage]=useState({});
     const [load,setload]=useState(false);
+    const [emoji,setemoji]=useState(false);
     const Refresh=()=>
     {
         setload(true)
@@ -125,9 +127,16 @@ const Chatfild = () => {
     
                 <div className="w-full shadow-xl pl-4 pr-4 pt-0 pb-3 absolute bottom-4 rounded-2xl bg-slate-100">
                 <label className=' flex items-center gap-3 mt-3'>
+                    <FontAwesomeIcon icon={faIcons} className={`  cursor-pointer ${!emoji?"text-stone-400":"text-stone-800"}`} onClick={()=>setemoji(!emoji)}></FontAwesomeIcon>
                 <input type="text" placeholder="Message" className="border-none outline-none w-full min-w-xs bg-slate-100" value={message} onChange={(e)=>setMessage(e.target.value)}/>
-                <button className="" onClick={handelsend} className="bg-slate-400 pl-4 pr-4 pt-1 pb-1 rounded-xl"><img src={img} alt="" className="w-10"></img></button>
+                <button className="" onClick={handelsend} className="bg-slate-300 pl-4 pr-4 pt-1 pb-1 rounded-xl"><img src={img} alt="" className="w-7"></img></button>
                 </label>
+                {
+                    emoji&&  <div className="p-3">
+                    <EmojiPicker width="100%" onEmojiClick={(emoji)=>setMessage(message+emoji.emoji)}/>
+                    </div>
+                }
+              
                 
                 
                 </div>
