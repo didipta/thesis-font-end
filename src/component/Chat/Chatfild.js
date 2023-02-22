@@ -24,10 +24,16 @@ const Chatfild = () => {
     const socket=useRef();
     const [arrivalmessage,setarrivalmessage]=useState(null);
 
+
+    useEffect(()=>{
+        refetch();
+    },[])
+
+
     useEffect(()=>{
         if(userdetails!=="")
         {
-            socket.current=io("https://thesis-node-js.vercel.app/");
+            socket.current=io("https://socketio-production-bc70.up.railway.app/");
             socket.current.emit("addUser",userdetail._id);
         }
     },[userdetail._id]);
@@ -80,27 +86,27 @@ const Chatfild = () => {
      },[arrivalmessage])
     return (
         <div className=" relative h-[90vh]">
-            <Link to={`/home/selectedprofile/${userdetails.email}`}><div className="flex items-center gap-3 p-5 shadow-lg">
-            <div className="avatar online">
-            <div className="w-8 rounded-full">
-            <img src={userdetails.image} alt=""></img>
-            </div>
-            </div>
-                <p className="font-medium">{userdetails.name}</p>
-            </div></Link>
-            <div className="h-[65vh] overflow-scroll p-3 mt-3">
-               <Chatbox userdetails={userdetails} allchart={allmessage} isLoading={isLoading}></Chatbox>
-            </div>
-
-            <div className="w-full shadow-xl p-3 h-20 absolute bottom-2 rounded-2xl">
-            <label className=' flex items-center gap-3 mt-3'>
-            <input type="text" placeholder="Message" className="border-none outline-none w-full min-w-xs" value={message} onChange={(e)=>setMessage(e.target.value)}/>
-            <button className="btn btn-sm" onClick={handelsend}>send</button>
-            </label>
-            
-            
-            </div>
-           
+                <Link to={`/home/selectedprofile/${userdetails.email}`}><div className="flex items-center gap-3 p-5 shadow-lg">
+                <div className="avatar online">
+                <div className="w-8 rounded-full">
+                <img src={userdetails.image} alt=""></img>
+                </div>
+                </div>
+                    <p className="font-medium">{userdetails.name}</p>
+                </div></Link>
+                <div className="h-[65vh] overflow-scroll p-3 mt-3">
+                   <Chatbox userdetails={userdetails} allchart={allmessage} isLoading={isLoading}></Chatbox>
+                </div>
+    
+                <div className="w-full shadow-xl p-3 h-20 absolute bottom-2 rounded-2xl">
+                <label className=' flex items-center gap-3 mt-3'>
+                <input type="text" placeholder="Message" className="border-none outline-none w-full min-w-xs" value={message} onChange={(e)=>setMessage(e.target.value)}/>
+                <button className="btn btn-sm" onClick={handelsend}>send</button>
+                </label>
+                
+                
+                </div>
+                
         </div>
     );
 };

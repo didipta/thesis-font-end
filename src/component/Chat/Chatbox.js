@@ -23,7 +23,7 @@ const Chatbox = ({userdetails,allchart,isLoading}) => {
                 <div>
                     {
                      x.myself===false?   <div>
-                     <div className="chat chat-start">
+                     <div className="chat chat-start" key={x}>
                      <div className="chat-image avatar">
                          <div className="w-10 rounded-full">
                          <img src={userdetails.image} alt="" />
