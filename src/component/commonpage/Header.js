@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/Authprovider';
 import Navbar from '../Homepage/Navbar';
+import { Allusers } from '../Hook/Allusers';
 import img from "../img/chat.png"
 const Header = () => {
   const {user}=useContext(AuthContext);
+  const [allusers,isLoading]=Allusers();
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -42,13 +44,22 @@ const Header = () => {
         <Link to="/home/chat"><button class="btn btn-ghost btn-circle bg-white shadow-lg shadow-slate-400 fixed bottom-3 right-3 hidden lg:block">
           <div class="indicator">
            <img src={img} alt="" className='w-10 h-10'></img>
-            <span class="badge badge-xs bg-pink-500 border-none text-white indicator-item">0</span>
+            <span class="badge badge-xs bg-pink-500 border-none text-white indicator-item">
+              {
+                isLoading?"0":<>{allusers.length}</>
+              }</span>
           </div>
         </button></Link>
         <Link to="/home/chat"><button class="btn btn-ghost btn-circle bg-white shadow-lg shadow-slate-400 ml-1 lg:hidden">
           <div class="indicator">
            <img src={img} alt="" className='w-10 h-10'></img>
-            <span class="badge badge-xs bg-pink-500 border-none text-white indicator-item">0</span>
+            <span class="badge badge-xs bg-pink-500 border-none text-white indicator-item">
+              {
+                isLoading?"0":<>{allusers.length}</>
+              }
+              
+              
+              </span>
           </div>
         </button></Link>
       </div>

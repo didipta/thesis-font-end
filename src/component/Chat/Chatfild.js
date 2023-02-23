@@ -14,10 +14,12 @@ import {faRefresh,faIcons} from '@fortawesome/free-solid-svg-icons';
 import Loading from '../Loading/Loading';
 import img from "../img/2343805.png"
 import EmojiPicker from 'emoji-picker-react';
+import { useForm } from 'react-hook-form';
 const Chatfild = () => {
     const {user}=useContext(AuthContext);
     const userdetail=Userdetails(user);
     const [message,setMessage]=useState("");
+    const { register, handleSubmit } = useForm();
     const userdetails =useLoaderData();
     const [allchart,isLoading,refetch]=AllChat(userdetail._id,userdetails._id);
     refetch();
@@ -25,7 +27,7 @@ const Chatfild = () => {
     useEffect(()=>{
         Setallmessage(allchart);
     },[allchart])
-    console.log(allmessage);
+    console.log(message);
     const socket=useRef();
     const [arrivalmessage,setarrivalmessage]=useState({});
     const [load,setload]=useState(false);
@@ -51,7 +53,14 @@ const Chatfild = () => {
     },[userdetail._id]);
 
     console.log(socket);
-    const handelsend=()=>
+    const onSubmit=(data,e)=>
+    {
+       sendmsgtext();
+       e.target.reset();
+    }
+    
+
+    const sendmsgtext=()=>
     {
         const msg={
             from:userdetail._id,
@@ -87,7 +96,6 @@ const Chatfild = () => {
 
           setMessage("");
     }
-
     useEffect(()=>{
         if(socket.current)
         {
@@ -125,11 +133,11 @@ const Chatfild = () => {
                    <Chatbox userdetails={userdetails} allchart={allmessage} isLoading={isLoading}></Chatbox>
                 </div>
     
-                <div className="w-full shadow-xl pl-4 pr-4 pt-0 pb-3 absolute bottom-4 rounded-2xl bg-slate-100">
+                <form className="w-full shadow-xl pl-4 pr-4 pt-0 pb-3 absolute bottom-4 rounded-2xl bg-slate-100" onSubmit={handleSubmit(onSubmit)}>
                 <label className=' flex items-center gap-3 mt-3'>
                     <FontAwesomeIcon icon={faIcons} className={`  cursor-pointer ${!emoji?"text-stone-400":"text-stone-800"}`} onClick={()=>setemoji(!emoji)}></FontAwesomeIcon>
-                <input type="text" placeholder="Message" className="border-none outline-none w-full min-w-xs bg-slate-100" value={message} onChange={(e)=>setMessage(e.target.value)}/>
-                <button className="" onClick={handelsend} className="bg-slate-300 pl-4 pr-4 pt-1 pb-1 rounded-xl"><img src={img} alt="" className="w-7"></img></button>
+                <input type="text" onChange={(e)=>setMessage(e.target.value)} placeholder="Message" className="border-none outline-none w-full min-w-xs bg-slate-100" />
+                <button className="bg-slate-300 pl-4 pr-4 pt-1 pb-1 rounded-xl"><img src={img} alt="" className="w-7"></img></button>
                 </label>
                 {
                     emoji&&  <div className="p-3">
@@ -139,7 +147,7 @@ const Chatfild = () => {
               
                 
                 
-                </div>
+                </form>
                 
         </div>
     );

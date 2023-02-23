@@ -26,28 +26,28 @@ const Banner = () => {
         <div className="overflow-hidden">
             <Slider {...settings}>
             <div>
-          <img src={img1} alt="" className="w-11/12 h-96"></img>
+          <img src={img1} alt="" className="w-full h-96"></img>
           </div>
             <div>
-          <img src={img2} alt="" className="w-11/12 h-96"></img>
+          <img src={img2} alt="" className="w-full h-96"></img>
           </div>
             <div>
-          <img src={img3} alt="" className="w-11/12 h-96"></img>
+          <img src={img3} alt="" className="w-full h-96"></img>
           </div>
             <div>
-          <img src={img4} alt="" className="w-11/12 h-96"></img>
+          <img src={img4} alt="" className="w-full h-96"></img>
           </div>
             <div>
-          <img src={img5} alt="" className="w-11/12 h-96"></img>
+          <img src={img5} alt="" className="w-full h-96"></img>
           </div>
             <div>
-          <img src={img6} alt="" className="w-11/12 h-96"></img>
+          <img src={img6} alt="" className="w-full h-96"></img>
           </div>
             <div>
-          <img src={img7} alt="" className="w-11/12 h-96"></img>
+          <img src={img7} alt="" className="w-full h-96"></img>
           </div>
             <div>
-          <img src={img8} alt="" className="w-11/12 h-96"></img>
+          <img src={img8} alt="" className="w-full h-96"></img>
           </div>
         </Slider>
         </div>

@@ -29,7 +29,7 @@ const Chatbox = ({userdetails,allchart,isLoading}) => {
                 {
                     !loading?<Loading></Loading>:<div>
                          {
-                isLoading?<div>{allchart.length===0?<div>No message available</div>:<Loading></Loading>}</div>:
+                isLoading||allchart.length===0?<div>{allchart.length===0?<div>No message available</div>:<Loading></Loading>}</div>:
                 <>
                  {
                 allchart.map(x=>
@@ -46,7 +46,7 @@ const Chatbox = ({userdetails,allchart,isLoading}) => {
                          {userdetails.name}
                      </div>
                      <div className="chat-bubble bg-pink-200 text-slate-600 font-medium text-sm flex flex-col gap-2">{x.message}
-                     <time className="text-[10px] opacity-50 flex justify-end items-end">sent {TimeSince(new Date(x.date))} ago</time>
+                     <time className="text-[9px] opacity-50 flex justify-end items-end">sent {TimeSince(new Date(x.date))} ago</time>
                      </div>
                      
                      </div>
@@ -59,7 +59,7 @@ const Chatbox = ({userdetails,allchart,isLoading}) => {
                              
                           </div>
                           <div className="chat-bubble bg-slate-200 text-slate-600 font-medium text-sm flex flex-col gap-2" >{x.message}
-                          <time className="text-[10px] opacity-50 flex justify-end items-end">sent {TimeSince(new Date(x.date))} ago</time>
+                          <time className="text-[9px] opacity-50 flex justify-end items-end">sent {TimeSince(new Date(x.date))} ago</time>
                           </div>
                          
                           </div>
