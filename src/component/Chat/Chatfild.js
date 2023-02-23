@@ -32,6 +32,7 @@ const Chatfild = () => {
     const [arrivalmessage,setarrivalmessage]=useState({});
     const [load,setload]=useState(false);
     const [emoji,setemoji]=useState(false);
+    const [fix,setFix]=useState(false);
     const Refresh=()=>
     {
         setload(true)
@@ -110,8 +111,23 @@ const Chatfild = () => {
     useEffect(()=>{
        arrivalmessage && Setallmessage((pre)=>[...pre],arrivalmessage)
      },[arrivalmessage])
+
+
+
+     const setfixed=()=>{
+        if(window.scrollY>1)
+        {
+            setFix(true);
+        }
+        else
+        {
+            setFix(false)
+        }
+     }
+     window.addEventListener("scroll",setfixed);
     return (
-        <div className=" relative h-screen">
+        <div className={fix&&"absolute bottom-0 top-16 lg:top-10  lg:max-w-3xl lg:p-5 w-full mt-3"}>
+         <div className=" relative h-screen">
             <div className="flex p-4 justify-between items-center shadow-lg">
 
             <Link to={`/home/selectedprofile/${userdetails.email}`}><div className="flex items-center gap-3">
@@ -150,6 +166,8 @@ const Chatfild = () => {
                 </form>
                 
         </div>
+        </div>
+        
     );
 };
 
