@@ -24,7 +24,7 @@ const Chatbox = ({userdetails,allchart,isLoading}) => {
     
     console.log(allchart)
     return (
-        <div>
+        <div className=" p-3">
             <div>
                 {
                     !loading?<Loading></Loading>:<div>
