@@ -115,7 +115,7 @@ const Chatfild = () => {
 
 
      const setfixed=()=>{
-        if(window.scrollY>1)
+        if(window.scrollY>3)
         {
             setFix(true);
         }
@@ -126,7 +126,7 @@ const Chatfild = () => {
      }
      window.addEventListener("scroll",setfixed);
     return (
-        <div className={fix&&"absolute bottom-0 top-16 lg:top-10  lg:max-w-3xl lg:p-5 w-full mt-3"}>
+        <div className={fix&&" lg:h-screen lg:absolute w-full lg:mt-5 lg:top-20 lg:max-w-3xl lg:p-5"}>
          <div className=" relative h-screen">
             <div className="flex p-4 justify-between items-center shadow-lg">
 
@@ -152,7 +152,7 @@ const Chatfild = () => {
                 <form className="w-full shadow-xl pl-4 pr-4 pt-0 pb-3 absolute bottom-4 rounded-2xl bg-slate-100" onSubmit={handleSubmit(onSubmit)}>
                 <label className=' flex items-center gap-3 mt-3'>
                     <FontAwesomeIcon icon={faIcons} className={`  cursor-pointer ${!emoji?"text-stone-400":"text-stone-800"}`} onClick={()=>setemoji(!emoji)}></FontAwesomeIcon>
-                <input type="text" onChange={(e)=>setMessage(e.target.value)} placeholder="Message" className="border-none outline-none w-full min-w-xs bg-slate-100" />
+                <input type="text" onChange={(e)=>setMessage(e.target.value)} value={message} placeholder="Message" className="border-none outline-none w-full min-w-xs bg-slate-100" />
                 <button className="bg-slate-300 pl-4 pr-4 pt-1 pb-1 rounded-xl"><img src={img} alt="" className="w-7"></img></button>
                 </label>
                 {
