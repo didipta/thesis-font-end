@@ -126,9 +126,9 @@ const Chatfild = () => {
      }
      window.addEventListener("scroll",setfixed);
     return (
-        <div className={fix&&" h-screen absolute w-full lg:top-[10%]  max-w-3xl lg:p-5 p-2 z-50"}>
-         <div className={`${fix?" relative h-full":"relative h-screen"} flex flex-col`}>
-            <div className="flex p-4 justify-between items-center shadow-lg ">
+        <div className={fix&&" h-full fixed w-full top-0 max-w-3xl z-[1000]"}>
+         <div className="relative h-full flex flex-col p-2">
+            <div className="flex p-4 justify-between items-center shadow-lg z-[1000] ">
 
             <Link to={`/home/selectedprofile/${userdetails.email}`}><div className="flex items-center gap-3">
                 <div className="avatar online">
@@ -145,7 +145,7 @@ const Chatfild = () => {
 
             </div>
                 
-                <div className="h-[80vh] w-full  overflow-y-auto mt-1">
+                <div className=" h-[80vh] w-full  overflow-y-auto mt-1">
                    <Chatbox userdetails={userdetails} allchart={allmessage} isLoading={isLoading}></Chatbox>
                 </div>
     
