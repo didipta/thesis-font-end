@@ -22,7 +22,7 @@ const Header = () => {
       </ul>
     </div>
     }
-    <Link to="/home" className="btn btn-ghost normal-case text-xl"><span className="text-red-500">THA</span>NKU</Link>
+    <Link to={user?"/home":"/"} className="btn btn-ghost normal-case text-xl"><span className="text-red-500">THA</span>NKU</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     

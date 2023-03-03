@@ -16,6 +16,7 @@ import Otherinfo from "../otherinfo/Otherinfo";
 import Postdetails from "../Postdetailes/Postdetails";
 import Profile from "../Profile/Profile";
 import Selectedprofile from "../Profile/Selectedprofile";
+import Startpage from "../Startpage/Startpage";
 import Watchfile from "../Watch/Watchfile";
 import Adminprivetroute from "./Adminprivetroute";
 import Privetrouter from "./Privetrouter";
@@ -29,6 +30,10 @@ export const routers=createBrowserRouter([
         children:[
             {
                 path:'/',
+                element:<Startpage></Startpage>
+            },
+            {
+                path:'/login',
                 element:<Login></Login>
             },
             {
