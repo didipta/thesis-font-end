@@ -126,7 +126,7 @@ const Chatfild = () => {
      }
      window.addEventListener("scroll",setfixed);
     return (
-        <div className={fix&&" h-full fixed w-full top-0 max-w-3xl z-[1000]"}>
+        <div className={fix&&" h-full fixed w-full top-0 max-w-3xl min-w-2xl z-[1000] bg-white"}>
          <div className="relative h-full flex flex-col p-2">
             <div className="flex p-4 justify-between items-center shadow-lg z-[1000] ">
 
