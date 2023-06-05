@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHome, faFlag,faUserGroup,faCalendarWeek,faGear,faVideo,faRightToBracket,faPlane,faScaleBalanced} from '@fortawesome/free-solid-svg-icons'
+import {faHome, faFlag,faUserGroup,faCalendarWeek,faGear,faVideo,faRightToBracket,faPlane,faScaleBalanced,faTheaterMasks} from '@fortawesome/free-solid-svg-icons'
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Context/Authprovider';
@@ -32,7 +32,7 @@ const Navbar = () => {
                     <a className=""><FontAwesomeIcon icon={faCalendarWeek} className="text-slate-600  text-xl pr-2"></FontAwesomeIcon>  <span className="pl-4">Events</span></a>
                 </li>
                 <li>
-                    <NavLink to="/home/legaleaid" className={({isActive})=>isActive? "text-pink-500":undefined}><FontAwesomeIcon icon={faScaleBalanced} className="text-xl pr-2"></FontAwesomeIcon>  <span className=" text-slate-700 pl-2">legal aid</span></NavLink>
+                    <NavLink to="/home/legaleaid" className={({isActive})=>isActive? "text-pink-500":undefined}><FontAwesomeIcon icon={faTheaterMasks} className="text-xl pr-2"></FontAwesomeIcon>  <span className=" text-slate-700 pl-2">Solution</span></NavLink>
                 </li>
                 <li className="lg:hidden">
                     <NavLink to="/home/mindfresh" className={({isActive})=>isActive? "text-pink-500":undefined}><FontAwesomeIcon icon={faPlane} className="  text-xl pr-2"></FontAwesomeIcon>  <span className="text-slate-700 pl-3">Mind Fresh</span></NavLink>
